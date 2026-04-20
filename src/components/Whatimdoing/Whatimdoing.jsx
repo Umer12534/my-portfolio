@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./WhatImDoing.css";
+import "./Whatimdoing.css";
 
 const services = [
   {
