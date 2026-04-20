@@ -1,0 +1,14 @@
+/* ─────────────────────────────────────────────
+   ParticleNetwork.css
+───────────────────────────────────────────── */
+
+.particle-network {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* Stretch to fill whatever parent it's placed inside.
+     The parent must have position: relative and a set height. */
+  position: absolute;
+  inset: 0;
+}
