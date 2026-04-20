@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "./ParticleNetwork.css";
+import "./Particlenetwork.css";
 
 export default function ParticleNetwork() {
   const canvasRef = useRef(null);
