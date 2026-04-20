@@ -60,7 +60,7 @@ export default function ProfileSection() {
         <div className="profile-body">
             {/* Left: Photo */}
             <img
-            src="../../../public/image/profile.jpg"
+            src="/image/profile.jpg"
             alt="Profile"
             className="profile-photo"
             />
