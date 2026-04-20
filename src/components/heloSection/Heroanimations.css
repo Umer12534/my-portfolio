@@ -1,0 +1,70 @@
+/* ============================================================
+   heroAnimations.css
+   All keyframe animations used by HeroSection.jsx
+   Import this file once in HeroSection.jsx:
+     import "./heroAnimations.css";
+   ============================================================ */
+
+
+/* ── 1. BLINKING CURSOR ─────────────────────────────────────
+   Used by the vertical bar that sits after the typewriter text.
+   Alternates between fully visible and fully hidden every 0.8s.
+   ─────────────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+
+/* ── 2. FADE + SLIDE UP ──────────────────────────────────────
+   Used on the left content column (subtitle, title, contacts).
+   Elements start 28px below and invisible, then slide up while
+   fading in. "both" keeps element hidden before delay fires and
+   visible after animation ends.
+   ─────────────────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity:   0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity:   1;
+    transform: translateY(0);
+  }
+}
+
+/* Main left column — 0.2s delay, starts right after page load */
+.animate-fade-up {
+  animation: fadeSlideUp 0.9s ease 0.2s both;
+}
+
+/* Contact info row — 0.5s stagger so it appears after the title */
+.animate-fade-up-delayed {
+  animation: fadeSlideUp 1s ease 0.5s both;
+}
+
+
+/* ── 3. SLIDE IN FROM RIGHT ──────────────────────────────────
+   Used on the right column (person image).
+   Element starts 50px to the right and invisible, then slides
+   left into its final position while fading in.
+   ─────────────────────────────────────────────────────────── */
+@keyframes slideInRight {
+  from {
+    opacity:   0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity:   1;
+    transform: translateX(0);
+  }
+}
+
+/* 0.3s delay — image enters just as the left text starts appearing */
+.animate-slide-right {
+  animation: slideInRight 1s ease 0.3s both;
+}
