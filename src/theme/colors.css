@@ -1,0 +1,16 @@
+:root {
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #111111;
+  --color-text-light: #FBFBFB;
+  --color-border: #e5e7eb;
+  --color-logo-light: #e8a020;
+  --color-logo: #F2C476;
+
+  --color-text-muted: #6b7280;
+  --color-text-bold: #1a1f2e;
+  --color-skill-track: #e5e7eb;
+  --color-skill-bar: #e8a020;
+  --section-padding: ;
+  --transition-bar: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
