@@ -1,0 +1,184 @@
+
+/* ── Section Wrapper ─────────────────────────────── */
+.profile-section {
+  background: var(--color-background);
+  padding: 80px 40px;
+  font-family: 'Poppins', serif;
+}
+
+/* ── Header ──────────────────────────────────────── */
+.profile-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.profile-header__title {
+  font-family: 'Georgia', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-text-bold);
+  letter-spacing: -0.5px;
+  margin: 0 0 10px;
+}
+
+.profile-header__subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+}
+
+/* ── Body Layout ─────────────────────────────────── */
+.profile-body {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 1rem;
+  width: 90%;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* ── Photo ───────────────────────────────────────── */
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  max-height: 580px;
+  object-fit: contain;
+  object-position: top center;
+  display: block;
+}
+
+/* ── Content ─────────────────────────────────────── */
+.profile-content {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* border: 1px solid var(--color-border); */
+  border-left: none;
+}
+
+/* ── Intro Label ─────────────────────────────────── */
+.profile-content__label {
+  font-family: 'Arial', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-text-bold);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-text-bold);
+  padding-bottom: 4px;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.profile-content__name {
+  font-family: 'Georgia', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--color-text-bold);
+  margin: 0 0 18px;
+  line-height: 1.3;
+}
+
+.profile-content__bold-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-bold);
+  line-height: 1.6;
+  margin: 0 0 14px;
+  font-family: 'Arial', sans-serif;
+}
+
+.profile-content__text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0 0 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* ── Skills ──────────────────────────────────────── */
+.profile-skills__label {
+  font-family: 'Arial', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-text-bold);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-text-bold);
+  padding-bottom: 4px;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.skill{
+  padding-top: 2rem;
+}
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Individual Skill ────────────────────────────── */
+.skill-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.skill-item__name {
+  font-size: 0.85rem;
+  font-family: 'Arial', sans-serif;
+  color: var(--color-text-bold);
+  font-weight: 400;
+}
+
+.skill-item__percent {
+  font-size: 0.85rem;
+  font-family: 'Arial', sans-serif;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.skill-item__track {
+  width: 100%;
+  height: 3px;
+  background: var(--color-skill-track);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-item__bar {
+  height: 100%;
+  background: var(--color-skill-bar);
+  width: 0%;
+  transition: width var(--transition-bar);
+}
+
+
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .profile-body {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-photo {
+    min-height: 280px;
+    max-height: 320px;
+    width: 100%;
+  }
+
+  .profile-content {
+    border-left: 1px solid var(--color-border);
+    padding: 28px 24px;
+  }
+
+  .profile-section {
+    padding: 50px 20px;
+  }
+}
