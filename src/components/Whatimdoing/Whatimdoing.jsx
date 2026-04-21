@@ -1,105 +1,128 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Whatimdoing.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCode,
+  faLaptopCode,
+  faServer,
+  faDatabase,
+  faRobot,
+  faMicrochip,
+  faGear,
+  faCloud
+} from "@fortawesome/free-solid-svg-icons";
 
 const services = [
   {
     id: 1,
-    title: "Web Design",
+    title: "Frontend Development",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin pharetra tortor.",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" width="48" height="48">
-        <path d="M24 8L40 18V38H8V18L24 8Z" />
-        <path d="M24 8V38M8 18H40" />
-        <circle cx="24" cy="18" r="3" fill="currentColor" stroke="none" />
-      </svg>
-    ),
+      "Building responsive and interactive user interfaces using modern React-based architectures.",
+    icon: faLaptopCode,
   },
   {
     id: 2,
-    title: "Development",
+    title: "Backend Development",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin pharetra tortor.",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" width="48" height="48">
-        <circle cx="24" cy="20" r="10" />
-        <path d="M24 30V42M17 42H31" />
-        <path d="M18 16l-4 4 4 4M30 16l4 4-4 4" />
-      </svg>
-    ),
+      "Developing scalable server-side applications using Node.js, Express, and REST APIs.",
+    icon: faServer,
   },
   {
     id: 3,
-    title: "Social Media",
+    title: "Full Stack Development",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin pharetra tortor.",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" width="48" height="48">
-        <rect x="6" y="10" width="36" height="28" rx="2" />
-        <path d="M6 18h36" />
-        <path d="M16 10v8M32 10v8" />
-        <path d="M14 26l6 4 8-6 6 4" />
-      </svg>
-    ),
+      "End-to-end web application development covering both frontend and backend systems.",
+    icon: faCode,
   },
   {
     id: 4,
-    title: "Branding",
+    title: "Database Design",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin pharetra tortor.",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" width="48" height="48">
-        <path d="M8 36L24 12L40 36H8Z" />
-        <path d="M15 28h18" />
-        <circle cx="24" cy="20" r="2" fill="currentColor" stroke="none" />
-      </svg>
-    ),
+      "Designing efficient and optimized database structures for scalable applications.",
+    icon: faDatabase,
   },
   {
     id: 5,
-    title: "Strategy",
+    title: "API Development",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin pharetra tortor.",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" width="48" height="48">
-        <circle cx="16" cy="32" r="6" />
-        <path d="M22 32h10" />
-        <circle cx="36" cy="32" r="3" />
-        <path d="M16 26V16" />
-        <circle cx="16" cy="13" r="3" />
-        <path d="M19 13l14 4" />
-        <circle cx="36" cy="17" r="3" />
-      </svg>
-    ),
+      "Creating secure and high-performance RESTful APIs for modern web and mobile apps.",
+    icon: faGear,
   },
   {
     id: 6,
-    title: "Consulting",
+    title: "Cloud & Deployment",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin pharetra tortor.",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" width="48" height="48">
-        <path d="M24 8C16 8 10 14 10 22C10 28 13.5 33 19 35.5V40H29V35.5C34.5 33 38 28 38 22C38 14 32 8 24 8Z" />
-        <path d="M19 40H29" />
-      </svg>
-    ),
+      "Deploying applications using modern cloud platforms with CI/CD pipelines.",
+    icon: faCloud,
+  },
+  {
+    id: 7,
+    title: "AI & Machine Learning",
+    description:
+      "Developing intelligent systems and models for real-world problem solving.",
+    icon: faMicrochip,
+  },
+  {
+    id: 8,
+    title: "Robotics & Automation",
+    description:
+      "Exploring robotics systems and automation using AI-driven technologies.",
+    icon: faRobot,
   },
 ];
 
 export default function WhatImDoing() {
-  return (
-    <section className="wid-section">
-      <div className="wid-decor-dot" />
+  const [hoveredId, setHoveredId] = useState(null);
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="wid-section">
+    {/* <div className="margin_container"></div> */}
       <div className="wid-header">
-        <h2 className="wid-title">What I'm Doing</h2>
-        <p className="wid-subtitle">Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+        <div className="wid-header__accent"></div>
+        <h2 className="wid-title">My Services</h2>
+        <p className="wid-subtitle">
+          Transforming ideas into exceptional digital experiences
+        </p>
       </div>
 
       <div className="wid-grid">
-        {services.map((service) => (
-          <div key={service.id} className="wid-card">
-            <div className="wid-icon-wrapper">{service.icon}</div>
+        {services.map((service, index) => (
+          <div 
+            key={service.id} 
+            className={`wid-card ${isVisible ? 'animate' : ''}`}
+            style={{ animationDelay: `${index * 100}ms` }}
+            onMouseEnter={() => setHoveredId(service.id)}
+            onMouseLeave={() => setHoveredId(null)}
+          >
+            {/* Border animation elements */}
+            <div className="border-top"></div>
+            <div className="border-right"></div>
+            <div className="border-bottom"></div>
+            <div className="border-left"></div>
+            
+            <div className={`wid-icon-wrapper ${hoveredId === service.id ? 'hovered' : ''}`}>
+              <FontAwesomeIcon icon={service.icon} />
+            </div>
             <h3 className="wid-card-title">{service.title}</h3>
             <p className="wid-card-desc">{service.description}</p>
           </div>

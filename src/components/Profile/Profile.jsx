@@ -73,7 +73,7 @@ export default function ProfileSection() {
                 <div className="profile-photo-wrapper">
                     <div className="profile-photo__frame">
                         <img
-                            src="/image/profile.jpg"
+                            src="/image/profile-light.jpg"
                             alt="Profile"
                             className="profile-photo"
                         />
