@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Profile.css";
+import { useTheme } from "../../theme/ThemeContext";
 
 const SKILLS = [
     { name: "HTML && CSS", percent: 95 },
@@ -37,6 +38,8 @@ function SkillBar({ name, percent, animate, delay }) {
 export default function ProfileSection() {
     const skillsRef = useRef(null);
     const [animate, setAnimate] = useState(false);
+    const { isDark } = useTheme();
+    const profileImg = isDark ? '/image/profile-Dark.png' : '/image/profile-light.jpg';
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -73,7 +76,7 @@ export default function ProfileSection() {
                 <div className="profile-photo-wrapper">
                     <div className="profile-photo__frame">
                         <img
-                            src="/image/profile-light.jpg"
+                            src={profileImg}
                             alt="Profile"
                             className="profile-photo"
                         />

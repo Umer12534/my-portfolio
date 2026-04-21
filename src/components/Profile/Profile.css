@@ -74,7 +74,7 @@
   object-position: center top;
   display: block;
   border-radius: 5px;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.4s ease;
 }
 
 .profile-photo:hover {
@@ -94,6 +94,13 @@
   color: var(--color-accent);
   border: 1px solid rgba(232, 160, 32, 0.3);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+[data-theme="dark"] .profile-photo__badge {
+  background: rgba(30, 33, 48, 0.92);
+  border-color: rgba(232, 160, 32, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ── About Section ───────────────────────────────── */

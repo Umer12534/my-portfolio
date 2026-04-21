@@ -105,7 +105,7 @@ export default function Resume() {
           My professional journey and academic background
         </p>
         <a
-          href="/resume.pdf"
+          href="/Umer(CV).pdf"
           download
           className="resume-download-btn"
           aria-label="Download resume PDF"

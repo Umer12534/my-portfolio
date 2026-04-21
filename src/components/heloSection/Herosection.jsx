@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import ParticleNetwork from '../Particlenetwork/Particlenetwork';
+import { useTheme } from '../../theme/ThemeContext';
 import "./Herosection.css";
 
 
@@ -23,21 +24,17 @@ function Typewriter() {
     const current = ROLES[roleIdx];
 
     if (!deleting) {
-      // Still typing
       if (text.length < current.length) {
         const t = setTimeout(() => setText(current.slice(0, text.length + 1)), 90);
         return () => clearTimeout(t);
       }
-      // Finished typing → wait then delete
       const t = setTimeout(() => setDeleting(true), 1600);
       return () => clearTimeout(t);
     } else {
-      // Still deleting
       if (text.length > 0) {
         const t = setTimeout(() => setText(text.slice(0, -1)), 55);
         return () => clearTimeout(t);
       }
-      // Finished deleting → next role
       setDeleting(false);
       setRoleIdx((i) => (i + 1) % ROLES.length);
     }
@@ -52,23 +49,30 @@ function Typewriter() {
 }
 
 export default function HeroSection() {
-    return (
-        <section className="hero">
-          <ParticleNetwork />
-        <div className="hero__content">
-            <p className="hero__subtitle">- I Am Syed Umer Zubair</p>
-            <Typewriter />
-            <div className="hero__contacts">
-            {CONTACTS.map(({ label, value }) => (
-                <div key={label}>
-                <p className="hero__contact-label">{label}:</p>
-                <p className="hero__contact-value">{value}</p>
-                </div>
-            ))}
+  const { isDark } = useTheme();
+
+  return (
+    <section className="hero">
+      {/* Light image — always visible underneath */}
+      <div className="hero__bg hero__bg--light" />
+      {/* Dark image — fades in/out on top */}
+      <div className={`hero__bg hero__bg--dark${isDark ? ' hero__bg--visible' : ''}`} />
+      {/* Dark overlay for text readability */}
+      <div className="hero__overlay" />
+
+      <ParticleNetwork />
+      <div className="hero__content">
+        <p className="hero__subtitle">- I Am Syed Umer Zubair</p>
+        <Typewriter />
+        <div className="hero__contacts">
+          {CONTACTS.map(({ label, value }) => (
+            <div key={label}>
+              <p className="hero__contact-label">{label}:</p>
+              <p className="hero__contact-value">{value}</p>
             </div>
-
+          ))}
         </div>
-
-        </section>
-    );
+      </div>
+    </section>
+  );
 }
