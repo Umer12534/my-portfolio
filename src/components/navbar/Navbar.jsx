@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
-      <div className="navbar__logo">Umer</div>
+      <div className="navbar__logo">WebDev</div>
 
       <nav className="navbar__links" aria-label="Primary navigation">
         {navItems.map((item) => (

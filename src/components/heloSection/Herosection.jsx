@@ -4,7 +4,7 @@ import ParticleNetwork from '../Particlenetwork/Particlenetwork';
 import "./Herosection.css";
 
 
-const ROLES = ["ENTREPRENEUR", "DESIGNER", "FREELANCER", "DEVELOPER"];
+const ROLES = ["DEVELOPER", "Python Lerner"];
 
 const CONTACTS = [
   { label: "Email",       value: "syedumer12534@gmail.com" },

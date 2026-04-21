@@ -2,24 +2,34 @@ import { useEffect, useRef, useState } from "react";
 import "./Profile.css";
 
 const SKILLS = [
-    { name: "Development", percent: 75 },
-    { name: "Web Design", percent: 85 },
-    { name: "Branding", percent: 70 },
+    { name: "HTML && CSS", percent: 95 },
+    { name: "JavaScript", percent: 85 },
+    { name: "React", percent: 82 },
+    { name: "Node.js", percent: 78 },
+    { name: "Python", percent: 75 },
+    { name: "Database Design", percent: 72 },
 ];
 
-function SkillBar({ name, percent, animate }) {
+const TOOLS = [
+    { name: "Git & GitHub", percent: 85 },
+    { name: "VS Code", percent: 90 },
+    { name: "Figma", percent: 70 },
+    { name: "Postman", percent: 75 },
+];
+
+function SkillBar({ name, percent, animate, delay }) {
     return (
-        <div className="skill-item">
-        <div className="skill-item__header">
-            <span className="skill-item__name">{name}</span>
-            <span className="skill-item__percent">{percent}%</span>
-        </div>
-        <div className="skill-item__track">
-            <div
-            className={`skill-item__bar${animate ? " animate" : ""}`}
-            style={{ width: animate ? `${percent}%` : "0%" }}
-            />
-        </div>
+        <div className="skill-item" style={{ animationDelay: `${delay}ms` }}>
+            <div className="skill-item__header">
+                <span className="skill-item__name">{name}</span>
+                <span className="skill-item__percent">{percent}%</span>
+            </div>
+            <div className="skill-item__track">
+                <div
+                    className={`skill-item__bar${animate ? " animate" : ""}`}
+                    style={{ width: animate ? `${percent}%` : "0%" }}
+                />
+            </div>
         </div>
     );
 }
@@ -30,17 +40,17 @@ export default function ProfileSection() {
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-            setAnimate(true);
-            observer.disconnect();
-            }
-        },
-        { threshold: 0.3 }
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setAnimate(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.2 }
         );
 
         if (skillsRef.current) {
-        observer.observe(skillsRef.current);
+            observer.observe(skillsRef.current);
         }
 
         return () => observer.disconnect();
@@ -48,57 +58,91 @@ export default function ProfileSection() {
 
     return (
         <section className="profile-section">
-        {/* Header */}
-        <div className="profile-header">
-            <h2 className="profile-header__title">Profile</h2>
-            <p className="profile-header__subtitle">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit
-            </p>
-        </div>
+            {/* Header */}
+            <div className="profile-header">
+                <div className="profile-header__accent"></div>
+                <h2 className="profile-header__title">Profile</h2>
+                <p className="profile-header__subtitle">
+                    Crafting digital experiences with precision and creativity
+                </p>
+            </div>
 
-        {/* Body */}
-        <div className="profile-body">
-            {/* Left: Photo */}
-            <img
-            src="/image/profile.jpg"
-            alt="Profile"
-            className="profile-photo"
-            />
+            {/* Top Row: Image + About Info */}
+            <div className="profile-top-row">
+                {/* Left: Photo */}
+                <div className="profile-photo-wrapper">
+                    <div className="profile-photo__frame">
+                        <img
+                            src="/image/profile.jpg"
+                            alt="Profile"
+                            className="profile-photo"
+                        />
+                    </div>
+                    <div className="profile-photo__badge">
+                        <span>Available for work</span>
+                    </div>
+                </div>
 
-            {/* Right: Content */}
-            <div className="profile-content">
-            {/* Intro */}
-            <span className="profile-content__label">Intro</span>
-            <h3 className="profile-content__name">
-                Hi, my name is Syed Umer Zubair.
-            </h3>
-            <p className="profile-content__bold-text">
-                The person who designed and built Envato. He's a programmer and web
-                developer who enjoys a diverse array of hobbies, including building
-                web apps.
-            </p>
-            <p className="profile-content__text">
-                Bootstrap has reached wide-spread adoption among developers and many
-                have expressed their desire for design customization beyond the
-                default styles. This marketplace was created to solve.
-            </p>
-
-            {/* Skills */}
-            <div ref={skillsRef} className="skill">
-                <span className="profile-skills__label">Skills</span>
-                <div className="skill-list">
-                {SKILLS.map((skill) => (
-                    <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    percent={skill.percent}
-                    animate={animate}
-                    />
-                ))}
+                {/* Right: About Info */}
+                <div className="profile-about">
+                    <span className="profile-about__label">About Me</span>
+                    <h3 className="profile-about__name">Syed Umer Zubair</h3>
+                    <div className="profile-about__badge">Full Stack Developer</div>
+                    <p className="profile-about__text">
+                        Experienced in building modern web applications using frontend and backend technologies. 
+                        Passionate about creating scalable solutions and currently expanding expertise in Artificial 
+                        Intelligence and Robotics to develop intelligent, real-world systems.
+                    </p>
                 </div>
             </div>
+
+            {/* Skills Section - Two Columns */}
+            <div ref={skillsRef} className="profile-skills-section">
+                <div className="profile-skills__header">
+                    <span className="profile-skills__icon">⚡</span>
+                    <span className="profile-skills__title">Technical Expertise</span>
+                </div>
+
+                <div className="skills-two-columns">
+                    {/* Left Column Skills */}
+                    <div className="skills-column">
+                        <div className="skill-category">
+                            <div className="skill-category__header">
+                                <span className="skill-category__icon">💻</span>
+                                <span className="skill-category__title">Core Skills</span>
+                            </div>
+                            {SKILLS.map((skill, idx) => (
+                                <SkillBar
+                                    key={skill.name}
+                                    name={skill.name}
+                                    percent={skill.percent}
+                                    animate={animate}
+                                    delay={idx * 100}
+                                />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Column Skills */}
+                    <div className="skills-column">
+                        <div className="skill-category">
+                            <div className="skill-category__header">
+                                <span className="skill-category__icon">🛠️</span>
+                                <span className="skill-category__title">Tools & Technologies</span>
+                            </div>
+                            {TOOLS.map((tool, idx) => (
+                                <SkillBar
+                                    key={tool.name}
+                                    name={tool.name}
+                                    percent={tool.percent}
+                                    animate={animate}
+                                    delay={idx * 100}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
         </section>
     );
 }
