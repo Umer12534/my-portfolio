@@ -52,7 +52,7 @@ const services = [
     id: 6,
     title: "Cloud & Deployment",
     description:
-      "Deploying applications using modern cloud platforms with CI/CD pipelines.",
+      "Deploying applications.",
     icon: faCloud,
   },
   {
@@ -121,7 +121,7 @@ export default function WhatImDoing() {
             <div className="border-left"></div>
             
             <div className={`wid-icon-wrapper ${hoveredId === service.id ? 'hovered' : ''}`}>
-              <FontAwesomeIcon icon={service.icon} />
+              <FontAwesomeIcon icon={service.icon} size="4x"/>
             </div>
             <h3 className="wid-card-title">{service.title}</h3>
             <p className="wid-card-desc">{service.description}</p>

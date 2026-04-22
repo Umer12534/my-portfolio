@@ -11,45 +11,38 @@ const experience = [
   {
     id: 1,
     role: "Full Stack Developer",
-    company: "Tech Solutions Inc.",
-    period: "2023 – Present",
+    company: "Vision Birds Tech",
+    companyUrl: "https://visionbird.com/",
+    period: "Nov 2026 – Apr 2026",
     description:
-      "Developed and maintained scalable web applications using React, Node.js, and MongoDB. Led a team of 3 developers to deliver features on time.",
-  },
-  {
-    id: 2,
-    role: "Frontend Developer",
-    company: "Creative Agency",
-    period: "2022 – 2023",
-    description:
-      "Built responsive UI components and improved page performance by 40%. Collaborated closely with designers to implement pixel-perfect interfaces.",
-  },
-  {
-    id: 3,
-    role: "Junior Web Developer",
-    company: "StartUp Hub",
-    period: "2021 – 2022",
-    description:
-      "Contributed to the development of client-facing dashboards and internal tools using React and REST APIs.",
+      "Worked as a Full Stack Developer at Vision Bird, developing and maintaining responsive web applications using modern frontend and backend technologies. Implemented REST APIs, integrated databases, and built scalable UI components while following best coding practices.",
   },
 ];
 
 const education = [
   {
     id: 1,
-    degree: "B.Sc. Computer Science",
-    institution: "State University",
-    period: "2018 – 2022",
+    degree: "B.S. Information Technology",
+    institution: "University of Gujrat",
+    period: "2021 – 2025",
     description:
       "Graduated with honors. Focused on software engineering, algorithms, and data structures.",
   },
   {
     id: 2,
-    degree: "Full Stack Web Development",
-    institution: "Online Bootcamp",
-    period: "2021",
+    degree: "DAE Electronics",
+    institution: "GOVT. Swidish Pakistan College of Technology",
+    period: "2017 – 2020",
     description:
-      "Intensive 6-month program covering modern JavaScript, React, Node.js, and database design.",
+      "Completed DAE in Electronics, focusing on electronic circuits, PLC, digital systems, and industrial automation with practical project-based learning.",
+  },
+  {
+    id: 3,
+    degree: "",
+    institution: "GOVT. Swidish Pakistan College of Technology",
+    period: "2017 – 2020",
+    description:
+      "Completed DAE in Electronics, focusing on electronic circuits, PLC, digital systems, and industrial automation with practical project-based learning.",
   },
 ];
 
@@ -69,6 +62,7 @@ function TimelineItem({ item, animate, delay, isExperience }) {
             <span className="resume-timeline__org">
               {isExperience ? item.company : item.institution}
             </span>
+            {/* <FontAwesomeIcon */}
           </div>
           <span className="resume-timeline__period">{item.period}</span>
         </div>
