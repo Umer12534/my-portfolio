@@ -60,9 +60,10 @@ export default function ProfileSection() {
     }, []);
 
     return (
-        <section className="profile-section">
+        <section className="profile-section section-shell">
+            <div className="section-container--wide">
             {/* Header */}
-            <div className="profile-header">
+            <div className="profile-header section-header">
                 <div className="profile-header__accent"></div>
                 <h2 className="profile-header__title">Profile</h2>
                 <p className="profile-header__subtitle">
@@ -145,6 +146,7 @@ export default function ProfileSection() {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
     );

@@ -63,8 +63,9 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact-section">
-      <div className="contact-header">
+    <section className="contact-section section-shell">
+      <div className="section-container">
+      <div className="contact-header section-header">
         <div className="contact-header__accent" />
         <h2 className="contact-header__title">Contact</h2>
         <p className="contact-header__subtitle">
@@ -216,6 +217,7 @@ export default function Contact() {
             </p>
           )}
         </form>
+      </div>
       </div>
     </section>
   );

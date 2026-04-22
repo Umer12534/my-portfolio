@@ -1,7 +1,6 @@
 /* ── Section Wrapper ─────────────────────────────── */
 .contact-section {
   background: var(--color-card);
-  padding: 80px 40px;
   font-family: 'Poppins', 'Inter', sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -40,9 +39,7 @@
 .contact-body {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  gap: 48px;
-  max-width: 1100px;
-  margin: 0 auto;
+  gap: var(--section-gap);
   align-items: start;
 }
 
@@ -143,7 +140,7 @@ a.contact-info__value:hover {
 .contact-form {
   background: var(--color-background);
   border-radius: 5px;
-  padding: 36px 32px;
+  padding: var(--card-space-lg) var(--card-space);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -250,12 +247,8 @@ a.contact-info__value:hover {
 }
 
 @media (max-width: 600px) {
-  .contact-section {
-    padding: 60px 20px;
-  }
-
   .contact-form {
-    padding: 24px 20px;
+    padding: var(--card-space);
   }
 
   .contact-form__row {

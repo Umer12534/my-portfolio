@@ -91,8 +91,9 @@ export default function Resume() {
   }, []);
 
   return (
-    <section className="resume-section" ref={sectionRef}>
-      <div className="resume-header">
+    <section className="resume-section section-shell" ref={sectionRef}>
+      <div className="section-container">
+      <div className="resume-header section-header">
         <div className="resume-header__accent" />
         <h2 className="resume-header__title">Resume</h2>
         <p className="resume-header__subtitle">
@@ -145,6 +146,7 @@ export default function Resume() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

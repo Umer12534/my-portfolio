@@ -95,9 +95,9 @@ export default function WhatImDoing() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="wid-section">
-    {/* <div className="margin_container"></div> */}
-      <div className="wid-header">
+    <section ref={sectionRef} className="wid-section section-shell">
+      <div className="section-container--wide">
+      <div className="wid-header section-header">
         <div className="wid-header__accent"></div>
         <h2 className="wid-title">My Services</h2>
         <p className="wid-subtitle">
@@ -127,6 +127,7 @@ export default function WhatImDoing() {
             <p className="wid-card-desc">{service.description}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

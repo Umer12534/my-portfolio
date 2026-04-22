@@ -1,7 +1,6 @@
 /* ── Section Wrapper ─────────────────────────────── */
 .resume-section {
   background: var(--color-background);
-  padding: 80px 40px;
   font-family: 'Poppins', 'Inter', sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -60,9 +59,7 @@
 .resume-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: var(--section-gap);
 }
 
 /* ── Column heading ──────────────────────────────── */
@@ -174,10 +171,6 @@
 
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 768px) {
-  .resume-section {
-    padding: 60px 20px;
-  }
-
   .resume-columns {
     grid-template-columns: 1fr;
     gap: 40px;

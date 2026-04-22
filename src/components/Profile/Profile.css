@@ -1,7 +1,6 @@
 /* ── Section Wrapper ─────────────────────────────── */
 .profile-section {
   background: var(--color-background);
-  padding: 80px 40px;
   font-family: 'Poppins', 'Inter', sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -43,10 +42,8 @@
 .profile-top-row {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 1rem;
-  max-width: 1400px;
-  margin: 0 auto 50px auto;
-  padding: 0 30px;
+  gap: var(--section-gap);
+  margin-bottom: var(--section-header-gap);
   align-items: stretch;
 }
 
@@ -106,7 +103,7 @@
 /* ── About Section ───────────────────────────────── */
 .profile-about {
   background: var(--color-surface);
-  padding: 35px 35px;
+  padding: var(--card-space-lg);
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -156,10 +153,8 @@
 
 /* ── Skills Section ──────────────────────────────── */
 .profile-skills-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 30px;
   background: var(--color-surface);
+  padding: var(--card-space-lg);
 }
 
 .profile-skills__header {
@@ -316,16 +311,16 @@
 }
 
 @media (max-width: 768px) {
-  .profile-section {
-    padding: 50px 20px;
-  }
-
   .profile-header__title {
     font-size: 2rem;
   }
 
   .profile-about {
-    padding: 28px 20px;
+    padding: var(--card-space);
+  }
+
+  .profile-skills-section {
+    padding: var(--card-space);
   }
 
   .profile-about__name {

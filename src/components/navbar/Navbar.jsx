@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isDark ? 'navbar--dark' : ''}`}>
-      <div className="navbar__logo">WebDev</div>
+      <div className="navbar__logo">Umer</div>
 
       <nav className="navbar__links" ref={navRef} aria-label="Primary navigation">
         {navItems.map(({ label, id }) => (

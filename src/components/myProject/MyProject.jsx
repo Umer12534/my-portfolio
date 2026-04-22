@@ -90,9 +90,10 @@ const MyProjects = () => {
   const fmt = (n) => String(n).padStart(2, '0');
 
   return (
-    <section className="projects-section">
+    <section className="projects-section section-shell">
+      <div className="section-container">
       {/* ── Header ── */}
-      <div className="projects-header">
+      <div className="projects-header section-header">
         <div className="projects-header-left">
           <span className="projects-eyebrow">Selected Work</span>
           <h2 className="projects-title">
@@ -194,6 +195,7 @@ const MyProjects = () => {
             <ArrowRight />
           </button>
         </div>
+      </div>
       </div>
     </section>
   );

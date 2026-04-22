@@ -1,5 +1,116 @@
+:root {
+  --nav-height: 80px;
+  --section-max-width: 1200px;
+  --section-max-width-wide: 1400px;
+  --section-space-y: 88px;
+  --section-space-x: 40px;
+  --section-gap: 32px;
+  --section-header-gap: 56px;
+  --card-space: 32px;
+  --card-space-lg: 40px;
+}
+
+/* Basic reset shared by the whole app */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  background: var(--color-background, #ffffff);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--nav-height) + 12px);
+}
+
+/* Reusable section layout helpers */
+.section-shell {
+  padding-block: var(--section-space-y);
+}
+
+.section-container {
+  width: min(calc(100% - (var(--section-space-x) * 2)), var(--section-max-width));
+  margin-inline: auto;
+}
+
+.section-container--wide {
+  width: min(calc(100% - (var(--section-space-x) * 2)), var(--section-max-width-wide));
+  margin-inline: auto;
+}
+
+.section-stack {
+  display: grid;
+  gap: var(--section-gap);
+}
+
+.section-header {
+  margin-bottom: var(--section-header-gap);
+}
+
+/* Keep theme changes smooth across shared UI elements */
+* {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --section-space-y: 104px;
+    --section-space-x: 56px;
+    --section-gap: 40px;
+    --section-header-gap: 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-space-y: 72px;
+    --section-space-x: 28px;
+    --section-gap: 28px;
+    --section-header-gap: 48px;
+    --card-space: 28px;
+    --card-space-lg: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 72px;
+    --section-space-y: 60px;
+    --section-space-x: 20px;
+    --section-gap: 24px;
+    --section-header-gap: 40px;
+    --card-space: 22px;
+    --card-space-lg: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-space-y: 52px;
+    --section-space-x: 16px;
+    --section-gap: 20px;
+    --section-header-gap: 32px;
+    --card-space: 20px;
+    --card-space-lg: 24px;
+  }
 }

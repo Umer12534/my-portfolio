@@ -13,27 +13,27 @@ const Home = () => {
     <div className="app-shell">
       <Navbar />
 
-      <section id="home">
+      <section id="home" className="page-anchor">
         <Hero />
       </section>
 
-      <section id="about">
+      <section id="about" className="page-anchor">
         <ProfileSection />
       </section>
 
-      <section id="services">
+      <section id="services" className="page-anchor">
         <WhatImDoing />
       </section>
 
-      <section id="portfolio">
+      <section id="portfolio" className="page-anchor">
         <MyProjects />
       </section>
 
-      <section id="resume">
+      <section id="resume" className="page-anchor">
         <Resume />
       </section>
 
-      <section id="contact">
+      <section id="contact" className="page-anchor">
         <Contact />
       </section>
 

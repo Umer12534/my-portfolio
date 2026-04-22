@@ -3,9 +3,6 @@
 /* ── Section Wrapper ───────────────────────────────────────────────────── */
 .wid-section {
   position: relative;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 80px 40px;
   background: var(--color-background);
   overflow: hidden;
 }
@@ -49,9 +46,6 @@
   margin-bottom: 16px;
   font-family: 'Inter', sans-serif;
 }
-.margin_container{
-  margin: 0 a;
-}
 .wid-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -73,7 +67,7 @@
 .wid-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: var(--section-gap);
   position: relative;
   z-index: 1;
 }
@@ -81,7 +75,7 @@
 /* ── Card Styles ───────────────────────────────────────────────────────── */
 .wid-card {
   position: relative;
-  padding: 40px 32px;
+  padding: var(--card-space-lg) var(--card-space);
   text-align: center;
   cursor: default;
   background: var(--color-card);
@@ -230,16 +224,12 @@
 
 /* ── Responsive Design ─────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .wid-section {
-    padding: 60px 30px;
-  }
-
   .wid-grid {
     gap: 20px;
   }
 
   .wid-card {
-    padding: 32px 24px;
+    padding: var(--card-space-lg) var(--card-space);
   }
 
   .wid-title {
@@ -248,10 +238,6 @@
 }
 
 @media (max-width: 768px) {
-  .wid-section {
-    padding: 50px 20px;
-  }
-
   .wid-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
@@ -266,7 +252,7 @@
   }
 
   .wid-card {
-    padding: 28px 20px;
+    padding: var(--card-space-lg) var(--card-space);
   }
 
   .wid-card-title {
@@ -275,10 +261,6 @@
 }
 
 @media (max-width: 480px) {
-  .wid-section {
-    padding: 40px 16px;
-  }
-
   .wid-grid {
     grid-template-columns: 1fr;
   }
@@ -296,6 +278,6 @@
   }
 
   .wid-card {
-    padding: 24px 20px;
+    padding: var(--card-space-lg) var(--card-space);
   }
 }
