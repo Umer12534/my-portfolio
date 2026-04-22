@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+/* ─────────────────────────────────────────────────────────────
+   All color values reference your existing portfolio variables:
+   --color-background, --color-surface, --color-card,
+   --color-text, --color-text-bold, --color-text-muted,
+   --color-text-light, --color-border, --color-logo,
+   --color-logo-light, --color-accent, --color-accent-glow,
+   --theme-transition
+   No new variables are introduced.
+───────────────────────────────────────────────────────────── */
+
+/* ─── Section Wrapper ────────────────────────────────────── */
+.projects-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 32px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  position: relative;
+  transition: var(--theme-transition);
+}
+
+/* ─── Section Header ─────────────────────────────────────── */
+.projects-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.projects-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.projects-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--theme-transition);
+}
+
+.projects-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.projects-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  margin: 0;
+  transition: var(--theme-transition);
+}
+
+.projects-title span {
+  color: var(--color-logo);
+  display: block;
+}
+
+.projects-counter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--color-border);
+  letter-spacing: 0.02em;
+  user-select: none;
+  transition: var(--theme-transition);
+}
+
+/* ─── Carousel ───────────────────────────────────────────── */
+.projects-carousel {
+  position: relative;
+  z-index: 1;
+}
+
+.projects-swiper {
+  border-radius: 20px;
+  overflow: visible !important;
+}
+
+/* ─── Project Card ───────────────────────────────────────── */
+.project-card {
+  background: var(--color-card);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 440px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.35s ease, var(--theme-transition);
+}
+
+/* Gold radial glow on hover using your accent-glow variable */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(
+    circle at 30% 50%,
+    var(--color-accent-glow) 0%,
+    transparent 62%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.project-card:hover {
+  border-color: var(--color-logo);
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── Card Visual (Left) ─────────────────────────────────── */
+.card-visual {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 0 0 20px;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s ease;
+  filter: brightness(0.78) saturate(0.85);
+}
+
+.project-card:hover .card-image {
+  transform: scale(1.04);
+  filter: brightness(0.9) saturate(1);
+}
+
+/* Base overlay darkens image slightly */
+.card-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* Right-edge bleed: image melts into card bg */
+.card-visual-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 55%, var(--color-card) 100%);
+  transition: var(--theme-transition);
+}
+
+/* Year pill */
+.card-year {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--color-logo);
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  padding: 5px 14px;
+  border-radius: 100px;
+  transition: var(--theme-transition);
+}
+
+/* Large watermark index number */
+.card-number {
+  position: absolute;
+  bottom: -12px;
+  left: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--color-text-light);
+  opacity: 0.06;
+  letter-spacing: -0.03em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── Card Content (Right) ───────────────────────────────── */
+.card-content {
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Subtle fade-in/out left separator */
+.card-content::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 40px;
+  bottom: 40px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-border) 30%,
+    var(--color-border) 70%,
+    transparent
+  );
+  transition: var(--theme-transition);
+}
+
+/* ─── Tags ───────────────────────────────────────────────── */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-tag {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--color-accent-glow);
+  color: var(--color-accent);
+  border: 1px solid transparent;
+  transition: border-color 0.25s ease, var(--theme-transition);
+}
+
+.card-tag:hover {
+  border-color: var(--color-logo-light);
+}
+
+/* ─── Card Title ─────────────────────────────────────────── */
+.card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: var(--color-text-bold);
+  margin: 0;
+  transition: var(--theme-transition);
+}
+
+/* ─── Card Description ───────────────────────────────────── */
+.card-description {
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  font-weight: 300;
+  max-width: 380px;
+  margin: 0;
+  transition: var(--theme-transition);
+}
+
+/* ─── Card Footer / CTA ──────────────────────────────────── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 11px 22px;
+  border-radius: 100px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, border-color 0.3s ease, var(--theme-transition);
+}
+
+/* Gold fill sweeps up on hover */
+.card-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-logo);
+  transform: translateY(101%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: inherit;
+}
+
+.card-link:hover::before {
+  transform: translateY(0);
+}
+
+.card-link:hover {
+  /* --color-text in light mode is #111 so it reads great on gold */
+  color: var(--color-text-bold);
+  border-color: var(--color-logo);
+}
+
+.card-link span,
+.card-link svg {
+  position: relative;
+  z-index: 1;
+}
+
+.card-link svg {
+  transition: transform 0.3s ease;
+}
+
+.card-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* ─── Navigation Bar ─────────────────────────────────────── */
+.projects-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Pagination Bullets ─────────────────────────────────── */
+.projects-pagination .swiper-pagination-bullet {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-border);
+  opacity: 1;
+  margin: 0 4px !important;
+  transition: background 0.35s ease, width 0.35s ease, var(--theme-transition);
+  cursor: pointer;
+}
+
+.projects-pagination .swiper-pagination-bullet-active {
+  background: var(--color-logo);
+  width: 48px;
+}
+
+/* ─── Progress Line ──────────────────────────────────────── */
+.progress-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 24px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+  transition: var(--theme-transition);
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-logo);
+  border-radius: 1px;
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ─── Nav Buttons ────────────────────────────────────────── */
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: background 0.25s ease, border-color 0.25s ease,
+              color 0.25s ease, transform 0.25s ease, var(--theme-transition);
+}
+
+.nav-btn:hover {
+  background: var(--color-logo);
+  border-color: var(--color-logo);
+  color: var(--color-text-bold);
+  transform: scale(1.06);
+}
+
+.nav-btn:active {
+  transform: scale(0.97);
+}
+
+/* ─── Slide Enter Animations ─────────────────────────────── */
+.swiper-slide-active .card-visual {
+  animation: proj-fadeInLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.swiper-slide-active .card-tags {
+  animation: proj-fadeInUp 0.45s 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.swiper-slide-active .card-title {
+  animation: proj-fadeInUp 0.45s 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.swiper-slide-active .card-description {
+  animation: proj-fadeInUp 0.45s 0.24s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.swiper-slide-active .card-footer {
+  animation: proj-fadeInUp 0.45s 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes proj-fadeInLeft {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes proj-fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 64px 20px;
+  }
+
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+
+  .projects-counter {
+    font-size: 3rem;
+    align-self: flex-end;
+  }
+
+  .project-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 240px 1fr;
+    min-height: unset;
+  }
+
+  .card-visual {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .card-visual-overlay::after {
+    background: linear-gradient(to bottom, transparent 55%, var(--color-card) 100%);
+  }
+
+  .card-content {
+    padding: 28px 28px 32px;
+  }
+
+  .card-content::before {
+    display: none;
+  }
+
+  .card-number {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-title {
+    font-size: 3rem;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+  }
+
+  .card-content {
+    padding: 22px 22px 26px;
+    gap: 14px;
+  }
+
+  .progress-line {
+    display: none;
+  }
+}
