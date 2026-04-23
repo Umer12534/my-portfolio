@@ -60,7 +60,7 @@
 
 .projects-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+  font-size: clamp(3rem, 6vw, 4rem);
   line-height: 0.92;
   letter-spacing: 0.02em;
   color: var(--color-text);
@@ -70,7 +70,6 @@
 
 .projects-title span {
   color: var(--color-logo);
-  display: block;
 }
 
 .projects-counter {
@@ -176,6 +175,22 @@
 
 /* Year pill */
 .card-year {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--color-logo);
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  padding: 5px 14px;
+  border-radius: 100px;
+  transition: var(--theme-transition);
+}
+.card-at {
   position: absolute;
   top: 20px;
   left: 20px;

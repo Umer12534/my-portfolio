@@ -11,33 +11,39 @@ import {
   faGithub,
   faLinkedin,
   faTwitter,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
 const contactInfo = [
   {
     icon: faEnvelope,
     label: "Email",
-    value: "hello@yourname.com",
-    href: "mailto:hello@yourname.com",
+    value: "syedumer12534@gmail.com",
+    href: "mailto:syedumer12534@gmail.com",
   },
   {
     icon: faPhone,
     label: "Phone",
-    value: "+1 (555) 000-0000",
-    href: "tel:+15550000000",
+    value: "+92 327 6317391",
+    href: "tel:+923276317391",
+  },
+  {
+    icon: faWhatsapp,
+    label: "WhatsApp",
+    value: "+92 327 6317391",
+    href: "https://wa.me/923276317391",
   },
   {
     icon: faLocationDot,
     label: "Location",
-    value: "Your City, Country",
+    value: "Gujrat Pakistan",
     href: null,
   },
 ];
 
 const socials = [
-  { icon: faGithub, label: "GitHub", href: "https://github.com" },
-  { icon: faLinkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: faTwitter, label: "Twitter", href: "https://twitter.com" },
+  { icon: faGithub, label: "GitHub", href: "https://github.com/Umer12534" },
+  { icon: faLinkedin, label: "LinkedIn", href: "www.linkedin.com/in/syed-umer-ac2416" },
 ];
 
 const INITIAL_FORM = { name: "", email: "", subject: "", message: "" };
@@ -92,7 +98,7 @@ export default function Contact() {
                 <div>
                   <span className="contact-info__label">{item.label}</span>
                   {item.href ? (
-                    <a href={item.href} className="contact-info__value">
+                    <a href={item.href} className="contact-info__value" target="_blank" rel="noopener noreferrer">
                       {item.value}
                     </a>
                   ) : (
@@ -113,7 +119,7 @@ export default function Contact() {
                 className="contact-social-btn"
                 aria-label={s.label}
               >
-                <FontAwesomeIcon icon={s.icon} />
+                <FontAwesomeIcon icon={s.icon} className="contact-social-icon"/>
               </a>
             ))}
           </div>

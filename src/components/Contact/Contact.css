@@ -133,7 +133,11 @@ a.contact-info__value:hover {
   background: var(--color-accent);
   color: #fff;
   border-color: var(--color-accent);
-  transform: translateY(-3px);
+  transform: scale(1.2)
+}
+
+.contact-social-btn:hover .contact-social-icon{
+  transform: scale(1.4);
 }
 
 /* ── Form ────────────────────────────────────────── */

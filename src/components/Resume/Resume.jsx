@@ -36,14 +36,6 @@ const education = [
     description:
       "Completed DAE in Electronics, focusing on electronic circuits, PLC, digital systems, and industrial automation with practical project-based learning.",
   },
-  {
-    id: 3,
-    degree: "",
-    institution: "GOVT. Swidish Pakistan College of Technology",
-    period: "2017 – 2020",
-    description:
-      "Completed DAE in Electronics, focusing on electronic circuits, PLC, digital systems, and industrial automation with practical project-based learning.",
-  },
 ];
 
 function TimelineItem({ item, animate, delay, isExperience }) {

@@ -12,29 +12,29 @@ import './MyProject.css';
 const projectsData = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Genitic_insight",
     description:
-      "A full-featured online store with cart, payments, and admin dashboard. Built with React, Node.js, and MongoDB.",
-    image:
-      "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+      "Genetic Insight is a SaaS platform that streamlines machine learning model training on DNA and RNA sequence data. With a user-friendly web interface and robust Python backend, it allows researchers to upload genetic data, configure ML models, and visualize results—all without advanced programming skills.",
+    image: "/image/genetic_insight.png",
+    tags: ["Django", "Python", "NumPy/Pandas", "scikit-learn", "HTML/CSS/JS"],
     link: "https://example.com/project1",
-    year: "2024",
+    year: "2025",
+    at: "Bs-IT FYP",
   },
   {
     id: 2,
-    title: "AI Image Generator",
+    title: "TheHairLocs",
     description:
-      "Generate stunning images from text prompts using stable diffusion. Real-time generation with live loading states.",
-    image:
-      "https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=800&h=600&fit=crop",
-    tags: ["Python", "TensorFlow", "React", "FastAPI"],
-    link: "https://example.com/project2",
-    year: "2024",
+      "A full-stack e-commerce platform built with React.js and Firebase, featuring authentication, product listing, cart, checkout, and an admin dashboard to mange product/category. Integrated Firestore and Firebase Storage for real-time data and optimized media handling. Includes an AI chatbot (Groq API) to assist users with personalized hair care guidance and product recommendations.",
+    image: "/image/the_hair_locs.png",
+    tags: ["React.js", "Firebase (Auth, Firestore, Storage)", "Groq API", "JavaScript", "HTML5","CSS3" ],
+    link: "https://myhairlocs.netlify.app/",
+    year: "2026",
+    at: "Vision Birds Tech",
   },
   {
     id: 3,
-    title: "TaskFlow Manager",
+    title: "Wather App",
     description:
       "Collaborative task management tool with real-time updates, drag-and-drop reordering, and team analytics.",
     image:
@@ -42,6 +42,7 @@ const projectsData = [
     tags: ["Next.js", "Tailwind", "Socket.io", "Prisma"],
     link: "https://example.com/project3",
     year: "2023",
+    at: "Bs-IT FYP",
   },
   {
     id: 4,
@@ -53,6 +54,7 @@ const projectsData = [
     tags: ["Vue.js", "D3.js", "OpenWeather API", "Leaflet"],
     link: "https://example.com/project4",
     year: "2023",
+    at: "Bs-IT FYP",
   },
 ];
 
@@ -92,110 +94,120 @@ const MyProjects = () => {
   return (
     <section className="projects-section section-shell">
       <div className="section-container">
-      {/* ── Header ── */}
-      <div className="projects-header section-header">
-        <div className="projects-header-left">
-          <span className="projects-eyebrow">Selected Work</span>
-          <h2 className="projects-title">
-            Featured
-            <span>Projects</span>
-          </h2>
+        {/* ── Header ── */}
+        <div className="wid-header section-header">
+          <div className="wid-header__accent"></div>
+          <h2 className="wid-title">My Project</h2>
+          <p className="wid-subtitle">
+            A selection of work I’ve built using modern technologies and clean UI principles
+          </p>
         </div>
-        <div className="projects-counter" aria-hidden="true">
-          {fmt(activeIndex + 1)}&nbsp;/&nbsp;{fmt(total)}
+        
+        <div className="projects-header section-header">
+          <div className="projects-header-left">
+            <span className="projects-eyebrow">Selected Work</span>
+            <h2 className="projects-title">
+              Featured
+              <span> Projects</span>
+            </h2>
+          </div>
+          <div className="projects-counter" aria-hidden="true">
+            {fmt(activeIndex + 1)}&nbsp;/&nbsp;{fmt(total)}
+          </div>
         </div>
-      </div>
 
-      {/* ── Carousel ── */}
-      <div className="projects-carousel">
-        <Swiper
-          className="projects-swiper"
-          modules={[Pagination, Autoplay, EffectFade]}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          slidesPerView={1}
-          pagination={{ el: paginationRef.current, clickable: true }}
-          autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          loop={true}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        >
-          {projectsData.map((project, index) => (
-            <SwiperSlide key={project.id}>
-              <article className="project-card">
-                {/* Left — Visual */}
-                <div className="card-visual">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="card-image"
-                    loading="lazy"
-                  />
-                  <div className="card-visual-overlay" />
-                  <span className="card-year">{project.year}</span>
-                  <span className="card-number" aria-hidden="true">
-                    {fmt(index + 1)}
-                  </span>
-                </div>
-
-                {/* Right — Content */}
-                <div className="card-content">
-                  <div className="card-tags">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="card-tag">{tag}</span>
-                    ))}
+        {/* ── Carousel ── */}
+        <div className="projects-carousel">
+          <Swiper
+            className="projects-swiper"
+            modules={[Pagination, Autoplay, EffectFade]}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            slidesPerView={1}
+            pagination={{ el: paginationRef.current, clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            loop={true}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          >
+            {projectsData.map((project, index) => (
+              <SwiperSlide key={project.id}>
+                <article className="project-card">
+                  {/* Left — Visual */}
+                  <div className="card-visual">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="card-image"
+                      loading="lazy"
+                    />
+                    <div className="card-visual-overlay" />
+                    {/* <div className="tags-yea"></div> */}
+                    <span className="card-year">{project.year}</span>
+                    <span className="card-at">{project.at}</span>
+                    <span className="card-number" aria-hidden="true">
+                      {fmt(index + 1)}
+                    </span>
                   </div>
 
-                  <h3 className="card-title">{project.title}</h3>
+                  {/* Right — Content */}
+                  <div className="card-content">
+                    <div className="card-tags">
+                      {project.tags.map((tag, i) => (
+                        <span key={i} className="card-tag">{tag}</span>
+                      ))}
+                    </div>
 
-                  <p className="card-description">{project.description}</p>
+                    <h3 className="card-title">{project.title}</h3>
 
-                  <div className="card-footer">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="card-link"
-                    >
-                      <span>View Project</span>
-                      <ExternalLink />
-                    </a>
+                    <p className="card-description">{project.description}</p>
+
+                    <div className="card-footer">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="card-link"
+                      >
+                        <span>View Project</span>
+                        <ExternalLink />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </article>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {/* ── Navigation Bar ── */}
-      <div className="projects-nav">
-        {/* Pagination dots */}
-        <div className="projects-pagination" ref={paginationRef} />
-
-        {/* Progress line */}
-        <div className="progress-line" aria-hidden="true">
-          <div className="progress-fill" style={{ width: progressWidth }} />
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        {/* Prev / Next */}
-        <div className="nav-buttons">
-          <button
-            className="nav-btn"
-            onClick={() => swiperRef.current?.slidePrev()}
-            aria-label="Previous project"
-          >
-            <ArrowLeft />
-          </button>
-          <button
-            className="nav-btn"
-            onClick={() => swiperRef.current?.slideNext()}
-            aria-label="Next project"
-          >
-            <ArrowRight />
-          </button>
+        {/* ── Navigation Bar ── */}
+        <div className="projects-nav">
+          {/* Pagination dots */}
+          <div className="projects-pagination" ref={paginationRef} />
+
+          {/* Progress line */}
+          <div className="progress-line" aria-hidden="true">
+            <div className="progress-fill" style={{ width: progressWidth }} />
+          </div>
+
+          {/* Prev / Next */}
+          <div className="nav-buttons">
+            <button
+              className="nav-btn"
+              onClick={() => swiperRef.current?.slidePrev()}
+              aria-label="Previous project"
+            >
+              <ArrowLeft />
+            </button>
+            <button
+              className="nav-btn"
+              onClick={() => swiperRef.current?.slideNext()}
+              aria-label="Next project"
+            >
+              <ArrowRight />
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

@@ -156,6 +156,7 @@
 .profile-skills-section {
   background: var(--color-surface);
   padding: var(--card-space-lg);
+  border-radius: 10px;
 }
 
 .profile-skills__header {
