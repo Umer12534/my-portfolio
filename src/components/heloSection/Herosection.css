@@ -1,5 +1,6 @@
-
-
+/* ─────────────────────────────────────────
+   Keyframes
+───────────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
@@ -11,19 +12,23 @@
 }
 
 
-/* ── Hero Section ── */
-
+/* ─────────────────────────────────────────
+   Hero shell
+───────────────────────────────────────── */
 .hero {
-  min-height: 40rem;
+  min-height: 100svh;          /* fill the viewport on every device */
   display: flex;
   align-items: center;
   position: relative;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
-  padding-top: var(--nav-height);
+  padding-top: var(--nav-height, 64px);
 }
 
-/* ── Background image layers ── */
+
+/* ─────────────────────────────────────────
+   Background layers
+───────────────────────────────────────── */
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -49,31 +54,35 @@
   opacity: 1;
 }
 
-/* ── Dark overlay so white text is readable ── */
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.58);
   z-index: 2;
 }
 
 
-/* ── Content wrapper ── */
-
+/* ─────────────────────────────────────────
+   Content wrapper
+───────────────────────────────────────── */
 .hero__content {
   position: relative;
   z-index: 4;
-  width: min(calc(100% - (var(--section-space-x) * 2)), var(--section-max-width-wide));
+  width: min(
+    calc(100% - clamp(32px, 6vw, 120px) * 2),
+    var(--section-max-width-wide, 1280px)
+  );
   margin-inline: auto;
-  padding: 40px 0 56px;
+  padding: clamp(36px, 6vh, 72px) 0 clamp(48px, 8vh, 80px);
   animation: fadeSlideUp 0.8s ease 0.2s both;
 }
 
 
-/* ── Subtitle ── */
-
+/* ─────────────────────────────────────────
+   Subtitle
+───────────────────────────────────────── */
 .hero__subtitle {
-  font-size: 15px;
+  font-size: clamp(12px, 2vw, 15px);
   font-weight: 300;
   color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.06em;
@@ -81,17 +90,19 @@
 }
 
 
-/* ── Typewriter title ── */
-
+/* ─────────────────────────────────────────
+   Typewriter title
+───────────────────────────────────────── */
 .hero__title {
   display: flex;
   align-items: center;
   gap: 4px;
+  min-height: clamp(52px, 10vw, 88px); /* prevent layout shift while typing */
 }
 
 .hero__title-text {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 9vw, 5rem);
+  font-size: clamp(2.6rem, 9vw, 5rem);
   font-weight: 300;
   letter-spacing: 0.03em;
   color: transparent;
@@ -103,42 +114,92 @@
 .hero__cursor {
   display: inline-block;
   width: 3px;
-  height: clamp(52px, 7vw, 88px);
+  height: clamp(44px, 8vw, 80px);
   background: rgba(255, 255, 255, 0.85);
   animation: blink 0.8s step-end infinite;
+  flex-shrink: 0;
 }
 
 
-/* ── Contact info row ── */
-
+/* ─────────────────────────────────────────
+   Contact info grid
+───────────────────────────────────────── */
 .hero__contacts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--section-gap);
-  margin-top: 36px;
+  display: grid;
+  /* 2 columns on small screens, auto-fill wider on larger ones */
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 3vw, 28px) clamp(20px, 4vw, 40px);
+  margin-top: clamp(24px, 4vh, 40px);
   animation: fadeSlideUp 0.8s ease 0.5s both;
 }
 
+/* On ≥ 560 px: try to spread all 4 in one row */
+@media (min-width: 560px) {
+  .hero__contacts {
+    grid-template-columns: repeat(4, auto);
+    justify-content: start;
+  }
+}
+
+.hero__contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hero__contact-label {
+  font-size: clamp(10px, 1.4vw, 12px);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.48);
+  letter-spacing: 0.07em;
+}
+
+.hero__contact-value {
+  font-size: clamp(12px, 1.8vw, 14px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  word-break: break-word;   /* keep long e-mail from overflowing */
+}
+
+
+/* ─────────────────────────────────────────
+   CTA buttons
+───────────────────────────────────────── */
 .hero__buttons {
   display: flex;
-  gap: 16px;
-  margin-top: 6rem;
   flex-wrap: wrap;
+  gap: clamp(12px, 2vw, 16px);
+  margin-top: clamp(36px, 7vh, 80px);
 }
 
 .hero__btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 1rem 6rem;
-  font-size: 15px;
+  /* fluid horizontal padding — generous on desktop, compact on mobile */
+  padding: clamp(10px, 1.4vh, 14px) clamp(28px, 5vw, 80px);
+  font-size: clamp(13px, 1.8vw, 15px);
   font-weight: 500;
   text-decoration: none;
   border-radius: 6px;
-  transition: var(--theme-transition);
+  transition: var(--theme-transition, background 0.25s ease, border-color 0.25s ease);
+  white-space: nowrap;
+  min-width: 0;          /* let flexbox shrink if needed */
 }
 
-/* Primary button */
+/* On very small screens let buttons go full-width so they stay tappable */
+@media (max-width: 360px) {
+  .hero__buttons {
+    flex-direction: column;
+  }
+
+  .hero__btn {
+    width: 100%;
+    padding-inline: 0;
+  }
+}
+
 .hero__btn--primary {
   background: var(--color-accent);
   color: var(--color-text-light);
@@ -150,63 +211,60 @@
   border-color: var(--color-logo-light);
 }
 
-/* Outline button */
 .hero__btn--outline {
-  border: 1px solid var(--color-border);
-  color: var(--color-text-light);
+  border: 1px solid var(--color-border, rgba(255,255,255,0.35));
+  color: var(--color-text-light, #fff);
   background: transparent;
 }
 
 .hero__btn--outline:hover {
-  background: var(--color-accent-glow);
-  border-color: var(--color-accent);
+  background: var(--color-accent-glow, rgba(255,255,255,0.08));
+  border-color: var(--color-accent, rgba(255,255,255,0.7));
 }
 
+
+/* ─────────────────────────────────────────
+   Fine-tuned breakpoints
+───────────────────────────────────────── */
+
+/* Large desktop */
 @media (min-width: 1400px) {
   .hero {
     min-height: 46rem;
   }
 }
 
+/* Tablet portrait & below */
 @media (max-width: 768px) {
   .hero {
-    min-height: 34rem;
+    min-height: 100svh;
+    align-items: flex-end;     /* push content toward bottom on short phones */
+    padding-bottom: 0;
   }
 
   .hero__content {
-    padding: 32px 0 40px;
+    padding-bottom: clamp(32px, 5vh, 56px);
+  }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: unset;
+    height: auto;
+  }
+
+  .hero__content {
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   .hero__contacts {
-    gap: 20px;
-    margin-top: 28px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero__subtitle {
-    font-size: 13px;
+    grid-template-columns: repeat(4, auto);
+    margin-top: 16px;
   }
 
-  .hero__title-text {
-    font-size: clamp(2.7rem, 15vw, 4rem);
+  .hero__buttons {
+    margin-top: 20px;
   }
-
-  .hero__contact-value {
-    font-size: 13px;
-  }
-}
-
-.hero__contact-label {
-  font-size: 12px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.48);
-  letter-spacing: 0.07em;
-  margin-bottom: 3px;
-}
-
-.hero__contact-value {
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
 }

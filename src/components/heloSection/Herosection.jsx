@@ -7,16 +7,15 @@ import { useTheme } from '../../theme/ThemeContext';
 import "./Herosection.css";
 
 
-const ROLES = ["DEVELOPER", "Python Lerner"];
+const ROLES = ["DEVELOPER", "Python Learner"];
 
 const CONTACTS = [
   { label: "Email",       value: "syedumer12534@gmail.com" },
-  { label: "Phone",       value: "+92 3276317391"     },
-  { label: "Address",     value: "Gujrat, Pakistan"   },
-  { label: "Nationality", value: "PAK"              },
+  { label: "Phone",       value: "+92 3276317391"          },
+  { label: "Address",     value: "Gujrat, Pakistan"        },
+  { label: "Nationality", value: "PAK"                     },
 ];
 
-// Typewriter — types each role, pauses, deletes, moves to the next
 function Typewriter() {
   const [text,     setText]     = useState("");
   const [roleIdx,  setRoleIdx]  = useState(0);
@@ -55,33 +54,32 @@ export default function HeroSection() {
 
   return (
     <section className="hero">
-      {/* Light image — always visible underneath */}
       <div className="hero__bg hero__bg--light" />
-      {/* Dark image — fades in/out on top */}
       <div className={`hero__bg hero__bg--dark${isDark ? ' hero__bg--visible' : ''}`} />
-      {/* Dark overlay for text readability */}
       <div className="hero__overlay" />
 
       <ParticleNetwork />
+
       <div className="hero__content">
         <p className="hero__subtitle">- I Am Syed Umer Zubair</p>
         <Typewriter />
+
+        {/* Contact grid */}
         <div className="hero__contacts">
           {CONTACTS.map(({ label, value }) => (
-            <div key={label}>
+            <div className="hero__contact-item" key={label}>
               <p className="hero__contact-label">{label}:</p>
               <p className="hero__contact-value">{value}</p>
             </div>
           ))}
         </div>
 
-        {/* Buttons */}
+        {/* CTA buttons */}
         <div className="hero__buttons">
           <a href="/resume.pdf" className="hero__btn hero__btn--outline">
             <FontAwesomeIcon icon={faDownload} />
             Resume
           </a>
-
           <a href="#contact" className="hero__btn hero__btn--outline">
             <FontAwesomeIcon icon={faEnvelope} />
             Contact
