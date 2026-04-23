@@ -16,6 +16,7 @@
   --color-skill-bar: #e8a020;
   --color-accent: #e8a020;
   --color-accent-glow: rgba(232, 160, 32, 0.15);
+  --color-button: #F0BB62
   --transition-bar: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Theme transition */

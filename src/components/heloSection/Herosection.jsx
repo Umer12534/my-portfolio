@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import ParticleNetwork from '../Particlenetwork/Particlenetwork';
 import { useTheme } from '../../theme/ThemeContext';
@@ -71,6 +73,19 @@ export default function HeroSection() {
               <p className="hero__contact-value">{value}</p>
             </div>
           ))}
+        </div>
+
+        {/* Buttons */}
+        <div className="hero__buttons">
+          <a href="/resume.pdf" className="hero__btn hero__btn--outline">
+            <FontAwesomeIcon icon={faDownload} />
+            Resume
+          </a>
+
+          <a href="#contact" className="hero__btn hero__btn--outline">
+            <FontAwesomeIcon icon={faEnvelope} />
+            Contact
+          </a>
         </div>
       </div>
     </section>
