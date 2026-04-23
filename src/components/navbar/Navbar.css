@@ -38,6 +38,10 @@
   color: var(--color-logo);
 }
 
+[data-theme="dark"] .navbar--scrolled .navbar__logo {
+  color: var(--color-text-bold);
+}
+
 .navbar__links {
   display: flex;
   align-items: center;
