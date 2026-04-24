@@ -3,7 +3,6 @@ import './Navbar.css'
 import { useTheme } from '../../theme/ThemeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faUser, faStar, faBriefcase, faFileAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-// import { FaBriefcase } from "react-icons/fa";
 
 const navItems = [
   { label: 'Home',      id: 'home',      icon: faHouse },
@@ -92,6 +91,12 @@ const Navbar = () => {
   )
 
   if (isMobile) {
+    const bottomTabsClass = [
+      'navbar__bottom-tabs',
+      scrolled ? 'navbar__bottom-tabs--scrolled' : '',
+      isDark   ? 'navbar__bottom-tabs--dark'     : '',
+    ].filter(Boolean).join(' ')
+
     return (
       <>
         {/* Mobile: top bar with logo + theme toggle only */}
@@ -101,10 +106,7 @@ const Navbar = () => {
         </header>
 
         {/* Mobile: bottom tab bar */}
-        <nav
-          className={['navbar__bottom-tabs', isDark ? 'navbar__bottom-tabs--dark' : ''].filter(Boolean).join(' ')}
-          aria-label="Mobile navigation"
-        >
+        <nav className={bottomTabsClass} aria-label="Mobile navigation">
           {navItems.map(({ label, id, icon }) => (
             <a
               key={id}
@@ -112,9 +114,7 @@ const Navbar = () => {
               href={'#' + id}
               onClick={(e) => handleNavClick(e, id)}
             >
-              <span className="navbar__tab-icon">
-                <FontAwesomeIcon icon={icon} />
-              </span>
+              <span className="navbar__tab-icon"><FontAwesomeIcon icon={icon} /></span>
               <span className="navbar__tab-label">{label}</span>
             </a>
           ))}
