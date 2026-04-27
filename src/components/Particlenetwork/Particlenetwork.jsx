@@ -52,24 +52,41 @@ export default function ParticleNetwork() {
       pulseSpeed: 0.02 + Math.random() * 0.02,
     }));
 
-    const REPEL_DIST  = 80;
-    const REPEL_FORCE = 0.3;
+    const REPEL_DIST  = 120;  // Increased from 80 to 120
+    const REPEL_FORCE = 0.8;  // Increased from 0.3 to 0.8
 
     const getDists = () =>
       canvas.width < 480
-        ? { dot: 90, mouse: 120 }
-        : { dot: 130, mouse: 170 };
+        ? { dot: 90, mouse: 150 }  // Increased mouse from 120 to 150
+        : { dot: 130, mouse: 220 }; // Increased mouse from 170 to 220
+
+    // Add random movement timer to keep dots moving
+    let lastRandomMove = Date.now();
+    const RANDOM_MOVE_INTERVAL = 3000; // Apply random force every 3 seconds
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const { dot: DOT_DIST, mouse: MOUSE_DIST } = getDists();
       const hasPointer = pointer.x !== null;
 
+      // Apply random forces periodically to keep particles moving
+      const now = Date.now();
+      if (now - lastRandomMove > RANDOM_MOVE_INTERVAL) {
+        lastRandomMove = now;
+        // Apply small random velocity changes to all particles
+        for (let i = 0; i < NUM; i++) {
+          const p = particles[i];
+          // Add small random force to keep movement lively
+          p.vx += (Math.random() - 0.5) * 0.3;
+          p.vy += (Math.random() - 0.5) * 0.3;
+        }
+      }
+
       for (let i = 0; i < NUM; i++) {
         const p = particles[i];
         p.pulse += p.pulseSpeed;
 
-        // Soft repulsion from pointer
+        // Stronger repulsion from pointer
         if (hasPointer) {
           const dx = p.x - pointer.x;
           const dy = p.y - pointer.y;
@@ -82,11 +99,17 @@ export default function ParticleNetwork() {
           }
         }
 
-        // Damping + speed clamp
-        p.vx *= 0.995;
-        p.vy *= 0.995;
+        // Damping + speed clamp (reduced damping to maintain movement)
+        p.vx *= 0.999;  // Changed from 0.995 to 0.998 (less damping)
+        p.vy *= 0.999;  // Changed from 0.995 to 0.998
         const speed = Math.hypot(p.vx, p.vy);
         if (speed > 2.5) { p.vx *= 2.5 / speed; p.vy *= 2.5 / speed; }
+        
+        // Ensure minimum speed to prevent complete stopping
+        if (Math.abs(p.vx) < 0.05 && Math.abs(p.vy) < 0.05) {
+          p.vx += (Math.random() - 0.5) * 0.1;
+          p.vy += (Math.random() - 0.5) * 0.1;
+        }
 
         p.x += p.vx;
         p.y += p.vy;
@@ -134,7 +157,7 @@ export default function ParticleNetwork() {
           }
         }
 
-        // ── Particle-to-pointer lines ──
+        // ── Particle-to-pointer lines (thicker and brighter) ──
         if (hasPointer) {
           const dx   = p.x - pointer.x;
           const dy   = p.y - pointer.y;
@@ -142,27 +165,33 @@ export default function ParticleNetwork() {
           if (dist < MOUSE_DIST) {
             const t  = 1 - dist / MOUSE_DIST;
             const lg = ctx.createLinearGradient(p.x, p.y, pointer.x, pointer.y);
-            lg.addColorStop(0, `rgba(180, 190, 255, ${0.5 * t})`);
-            lg.addColorStop(1, `rgba(100, 120, 255, ${0.8 * t})`);
+            lg.addColorStop(0, `rgba(200, 210, 255, ${0.7 * t})`);
+            lg.addColorStop(1, `rgba(140, 160, 255, ${1.0 * t})`);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(pointer.x, pointer.y);
             ctx.strokeStyle = lg;
-            ctx.lineWidth   = 0.8 + t * 0.8;
+            ctx.lineWidth   = 1.2 + t * 1.2;  // Thicker lines
             ctx.stroke();
           }
         }
       }
 
-      // Pointer glow dot
+      // Stronger pointer glow dot (larger and brighter)
       if (hasPointer) {
-        const pg = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 20);
-        pg.addColorStop(0,   "rgba(140, 160, 255, 0.7)");
-        pg.addColorStop(0.5, "rgba(100, 120, 255, 0.2)");
+        const pg = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 30);
+        pg.addColorStop(0,   "rgba(180, 200, 255, 0.9)");
+        pg.addColorStop(0.4, "rgba(140, 160, 255, 0.4)");
         pg.addColorStop(1,   "rgba(100, 120, 255, 0)");
         ctx.beginPath();
-        ctx.arc(pointer.x, pointer.y, 20, 0, Math.PI * 2);
+        ctx.arc(pointer.x, pointer.y, 30, 0, Math.PI * 2);
         ctx.fillStyle = pg;
+        ctx.fill();
+        
+        // Inner bright dot
+        ctx.beginPath();
+        ctx.arc(pointer.x, pointer.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
         ctx.fill();
       }
 
