@@ -1,7 +1,7 @@
 /* ── Section Wrapper ─────────────────────────────── */
 .profile-section {
   background: var(--color-background);
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: "Poppins", "Inter", sans-serif;
   position: relative;
   overflow-x: hidden;
 }
@@ -22,7 +22,7 @@
 }
 
 .profile-header__title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-text-bold);
@@ -33,7 +33,7 @@
 .profile-header__subtitle {
   font-size: 0.8rem;
   color: var(--color-text-muted);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   letter-spacing: 0.3px;
 }
@@ -70,7 +70,9 @@
   object-position: center top;
   display: block;
   border-radius: 10px;
-  transition: transform 0.5s ease, opacity 0.4s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.4s ease;
 }
 
 .profile-photo:hover {
@@ -91,7 +93,9 @@
   color: var(--color-accent);
   border: 1px solid rgba(232, 160, 32, 0.3);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: background 0.4s ease, color 0.4s ease;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
 }
 
 [data-theme="dark"] .profile-photo__badge {
@@ -111,7 +115,7 @@
 }
 
 .profile-about__label {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -122,7 +126,7 @@
 }
 
 .profile-about__name {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-text-bold);
@@ -149,7 +153,7 @@
   color: var(--color-text-muted);
   line-height: 1.7;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* ── Skills Section ──────────────────────────────── */
@@ -238,14 +242,14 @@
 
 .skill-item__name {
   font-size: 0.85rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--color-text-bold);
   font-weight: 500;
 }
 
 .skill-item__percent {
   font-size: 0.75rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--color-text-muted);
   font-weight: 500;
 }
@@ -273,19 +277,28 @@
 }
 
 .skill-item__bar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* ── Responsive ──────────────────────────────────── */
@@ -328,14 +341,13 @@
   .profile-about__name {
     font-size: 1.5rem;
   }
-
 }
 
 @media (max-width: 480px) {
   .skill-category {
     margin-bottom: 0;
   }
-  
+
   .skill-item {
     margin-bottom: 16px;
   }

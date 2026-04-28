@@ -9,7 +9,7 @@ import {
   faRobot,
   faMicrochip,
   faGear,
-  faCloud
+  faCloud,
 } from "@fortawesome/free-solid-svg-icons";
 
 const services = [
@@ -51,8 +51,7 @@ const services = [
   {
     id: 6,
     title: "Cloud & Deployment",
-    description:
-      "Deploying applications.",
+    description: "Deploying applications.",
     icon: faCloud,
   },
   {
@@ -84,7 +83,7 @@ export default function WhatImDoing() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -97,37 +96,39 @@ export default function WhatImDoing() {
   return (
     <section ref={sectionRef} className="wid-section section-shell">
       <div className="section-container--wide">
-      <div className="wid-header section-header">
-        <div className="wid-header__accent"></div>
-        <h2 className="wid-title">My Services</h2>
-        <p className="wid-subtitle">
-          Transforming ideas into exceptional digital experiences
-        </p>
-      </div>
+        <div className="wid-header section-header">
+          <div className="wid-header__accent"></div>
+          <h2 className="wid-title">My Services</h2>
+          <p className="wid-subtitle">
+            Transforming ideas into exceptional digital experiences
+          </p>
+        </div>
 
-      <div className="wid-grid">
-        {services.map((service, index) => (
-          <div 
-            key={service.id} 
-            className={`wid-card ${isVisible ? 'animate' : ''}`}
-            style={{ animationDelay: `${index * 100}ms` }}
-            onMouseEnter={() => setHoveredId(service.id)}
-            onMouseLeave={() => setHoveredId(null)}
-          >
-            {/* Border animation elements */}
-            <div className="border-top"></div>
-            <div className="border-right"></div>
-            <div className="border-bottom"></div>
-            <div className="border-left"></div>
-            
-            <div className={`wid-icon-wrapper ${hoveredId === service.id ? 'hovered' : ''}`}>
-              <FontAwesomeIcon icon={service.icon} size="4x"/>
+        <div className="wid-grid">
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              className={`wid-card ${isVisible ? "animate" : ""}`}
+              style={{ animationDelay: `${index * 100}ms` }}
+              onMouseEnter={() => setHoveredId(service.id)}
+              onMouseLeave={() => setHoveredId(null)}
+            >
+              {/* Border animation elements */}
+              <div className="border-top"></div>
+              <div className="border-right"></div>
+              <div className="border-bottom"></div>
+              <div className="border-left"></div>
+
+              <div
+                className={`wid-icon-wrapper ${hoveredId === service.id ? "hovered" : ""}`}
+              >
+                <FontAwesomeIcon icon={service.icon} size="4x" />
+              </div>
+              <h3 className="wid-card-title">{service.title}</h3>
+              <p className="wid-card-desc">{service.description}</p>
             </div>
-            <h3 className="wid-card-title">{service.title}</h3>
-            <p className="wid-card-desc">{service.description}</p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </section>
   );

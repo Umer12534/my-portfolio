@@ -1,7 +1,7 @@
 /* ── Section Wrapper ─────────────────────────────── */
 .resume-section {
   background: var(--color-background);
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: "Poppins", "Inter", sans-serif;
   position: relative;
   overflow-x: hidden;
 }
@@ -21,7 +21,7 @@
 }
 
 .resume-header__title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-text-bold);
@@ -46,7 +46,10 @@
   font-size: 0.9rem;
   border-radius: 40px;
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .resume-download-btn:hover {

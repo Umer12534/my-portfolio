@@ -76,7 +76,7 @@ export default function Resume() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -85,60 +85,66 @@ export default function Resume() {
   return (
     <section className="resume-section section-shell" ref={sectionRef}>
       <div className="section-container">
-      <div className="resume-header section-header">
-        <div className="resume-header__accent" />
-        <h2 className="resume-header__title">Resume</h2>
-        <p className="resume-header__subtitle">
-          My professional journey and academic background
-        </p>
-        <a
-          href="/Umer(CV).pdf"
-          download
-          className="resume-download-btn"
-          aria-label="Download resume PDF"
-        >
-          <FontAwesomeIcon icon={faDownload} />
-          <span>Download CV</span>
-        </a>
-      </div>
-
-      <div className="resume-columns">
-        <div className="resume-col">
-          <div className="resume-col__heading">
-            <FontAwesomeIcon icon={faBriefcase} className="resume-col__icon" />
-            <h3 className="resume-col__title">Experience</h3>
-          </div>
-          <div className="resume-timeline">
-            {experience.map((item, idx) => (
-              <TimelineItem
-                key={item.id}
-                item={item}
-                animate={animate}
-                delay={idx * 150}
-                isExperience
-              />
-            ))}
-          </div>
+        <div className="resume-header section-header">
+          <div className="resume-header__accent" />
+          <h2 className="resume-header__title">Resume</h2>
+          <p className="resume-header__subtitle">
+            My professional journey and academic background
+          </p>
+          <a
+            href="/Umer(CV).pdf"
+            download
+            className="resume-download-btn"
+            aria-label="Download resume PDF"
+          >
+            <FontAwesomeIcon icon={faDownload} />
+            <span>Download CV</span>
+          </a>
         </div>
 
-        <div className="resume-col">
-          <div className="resume-col__heading">
-            <FontAwesomeIcon icon={faGraduationCap} className="resume-col__icon" />
-            <h3 className="resume-col__title">Education</h3>
-          </div>
-          <div className="resume-timeline">
-            {education.map((item, idx) => (
-              <TimelineItem
-                key={item.id}
-                item={item}
-                animate={animate}
-                delay={idx * 150 + 100}
-                isExperience={false}
+        <div className="resume-columns">
+          <div className="resume-col">
+            <div className="resume-col__heading">
+              <FontAwesomeIcon
+                icon={faBriefcase}
+                className="resume-col__icon"
               />
-            ))}
+              <h3 className="resume-col__title">Experience</h3>
+            </div>
+            <div className="resume-timeline">
+              {experience.map((item, idx) => (
+                <TimelineItem
+                  key={item.id}
+                  item={item}
+                  animate={animate}
+                  delay={idx * 150}
+                  isExperience
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="resume-col">
+            <div className="resume-col__heading">
+              <FontAwesomeIcon
+                icon={faGraduationCap}
+                className="resume-col__icon"
+              />
+              <h3 className="resume-col__title">Education</h3>
+            </div>
+            <div className="resume-timeline">
+              {education.map((item, idx) => (
+                <TimelineItem
+                  key={item.id}
+                  item={item}
+                  animate={animate}
+                  delay={idx * 150 + 100}
+                  isExperience={false}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

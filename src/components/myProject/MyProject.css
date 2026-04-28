@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap");
 
 /* ─────────────────────────────────────────────────────────────
    All color values reference your existing portfolio variables:
@@ -12,7 +12,7 @@
 
 /* ─── Section Wrapper ────────────────────────────────────── */
 .projects-section {
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: "DM Sans", system-ui, sans-serif;
   background: var(--color-background);
   color: var(--color-text);
   position: relative;
@@ -37,7 +37,7 @@
 }
 
 .projects-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -50,7 +50,7 @@
 }
 
 .projects-eyebrow::before {
-  content: '';
+  content: "";
   display: block;
   width: 24px;
   height: 1px;
@@ -59,7 +59,7 @@
 }
 
 .projects-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: clamp(3rem, 6vw, 4rem);
   line-height: 0.92;
   letter-spacing: 0.02em;
@@ -73,7 +73,7 @@
 }
 
 .projects-counter {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 4.5rem;
   line-height: 1;
   color: var(--color-border);
@@ -103,12 +103,14 @@
   min-height: 440px;
   overflow: hidden;
   position: relative;
-  transition: border-color 0.35s ease, var(--theme-transition);
+  transition:
+    border-color 0.35s ease,
+    var(--theme-transition);
 }
 
 /* Gold radial glow on hover using your accent-glow variable */
 .project-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 20px;
@@ -142,8 +144,9 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.6s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.6s ease;
   filter: brightness(0.78) saturate(0.85);
 }
 
@@ -166,10 +169,14 @@
 
 /* Right-edge bleed: image melts into card bg */
 .card-visual-overlay::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, transparent 55%, var(--color-card) 100%);
+  background: linear-gradient(
+    to right,
+    transparent 55%,
+    var(--color-card) 100%
+  );
   transition: var(--theme-transition);
 }
 
@@ -178,7 +185,7 @@
   position: absolute;
   top: 60px;
   left: 20px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   color: var(--color-logo);
@@ -194,7 +201,7 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   color: var(--color-logo);
@@ -212,7 +219,7 @@
   position: absolute;
   bottom: -12px;
   left: 12px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 7rem;
   line-height: 1;
   color: var(--color-text-light);
@@ -234,7 +241,7 @@
 
 /* Subtle fade-in/out left separator */
 .card-content::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 40px;
@@ -267,7 +274,9 @@
   background: var(--color-accent-glow);
   color: var(--color-accent);
   border: 1px solid transparent;
-  transition: border-color 0.25s ease, var(--theme-transition);
+  transition:
+    border-color 0.25s ease,
+    var(--theme-transition);
 }
 
 .card-tag:hover {
@@ -276,7 +285,7 @@
 
 /* ─── Card Title ─────────────────────────────────────────── */
 .card-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: clamp(2rem, 3.2vw, 2.7rem);
   line-height: 1;
   letter-spacing: 0.03em;
@@ -318,12 +327,15 @@
   background: transparent;
   position: relative;
   overflow: hidden;
-  transition: color 0.3s ease, border-color 0.3s ease, var(--theme-transition);
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    var(--theme-transition);
 }
 
 /* Gold fill sweeps up on hover */
 .card-link::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: var(--color-logo);
@@ -374,7 +386,10 @@
   background: var(--color-border);
   opacity: 1;
   margin: 0 4px !important;
-  transition: background 0.35s ease, width 0.35s ease, var(--theme-transition);
+  transition:
+    background 0.35s ease,
+    width 0.35s ease,
+    var(--theme-transition);
   cursor: pointer;
 }
 
@@ -423,8 +438,12 @@
   align-items: center;
   justify-content: center;
   outline: none;
-  transition: background 0.25s ease, border-color 0.25s ease,
-              color 0.25s ease, transform 0.25s ease, var(--theme-transition);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    var(--theme-transition);
 }
 
 .nav-btn:hover {
@@ -460,13 +479,25 @@
 }
 
 @keyframes proj-fadeInLeft {
-  from { opacity: 0; transform: translateX(-18px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes proj-fadeInUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ─── Responsive ─────────────────────────────────────────── */
@@ -493,7 +524,11 @@
   }
 
   .card-visual-overlay::after {
-    background: linear-gradient(to bottom, transparent 55%, var(--color-card) 100%);
+    background: linear-gradient(
+      to bottom,
+      transparent 55%,
+      var(--color-card) 100%
+    );
   }
 
   .card-content {

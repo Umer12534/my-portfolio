@@ -1,38 +1,38 @@
-import React from 'react'
-import './Footer.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from "react";
+import "./Footer.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
   faPhone,
   faLocationDot,
-} from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const quickLinks = [
-  { label: 'Home',      id: 'home' },
-  { label: 'About',     id: 'about' },
-  { label: 'Services',  id: 'services' },
-  { label: 'Projects',  id: 'portfolio' },
-  { label: 'Resume',    id: 'resume' },
-  { label: 'Contact',   id: 'contact' },
-]
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Services", id: "services" },
+  { label: "Projects", id: "portfolio" },
+  { label: "Resume", id: "resume" },
+  { label: "Contact", id: "contact" },
+];
 
-const NAVBAR_HEIGHT = 80
+const NAVBAR_HEIGHT = 80;
 
 const Footer = () => {
   const handleClick = (e, id) => {
-    e.preventDefault()
-    const target = document.getElementById(id)
+    e.preventDefault();
+    const target = document.getElementById(id);
     if (target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT
-      window.scrollTo({ top, behavior: 'smooth' })
+      const top =
+        target.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
+      window.scrollTo({ top, behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <footer className="footer">
       <div className="footer__inner section-container">
-
         {/* ── About ── */}
         <div className="footer__col">
           <h3 className="footer__heading">About</h3>
@@ -85,32 +85,45 @@ const Footer = () => {
           <h3 className="footer__heading">Contact</h3>
           <ul className="footer__contact-list">
             <li className="footer__contact-item">
-              <FontAwesomeIcon icon={faEnvelope} className="footer__contact-icon" />
-              <a href="mailto:syedumer12534@gmail.com" className="footer__contact-value">
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="footer__contact-icon"
+              />
+              <a
+                href="mailto:syedumer12534@gmail.com"
+                className="footer__contact-value"
+              >
                 syedumer12534@gmail.com
               </a>
             </li>
             <li className="footer__contact-item">
-              <FontAwesomeIcon icon={faPhone} className="footer__contact-icon" />
+              <FontAwesomeIcon
+                icon={faPhone}
+                className="footer__contact-icon"
+              />
               <a href="tel:+923276317391" className="footer__contact-value">
                 +92 3276317391
               </a>
             </li>
             <li className="footer__contact-item">
-              <FontAwesomeIcon icon={faLocationDot} className="footer__contact-icon" />
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className="footer__contact-icon"
+              />
               <span className="footer__contact-value">Gujrat, Pakistan</span>
             </li>
           </ul>
         </div>
-
       </div>
 
       {/* ── Bottom bar ── */}
       <div className="footer__bottom">
-        <p>© {new Date().getFullYear()} Syed Umer Zubair. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Syed Umer Zubair. All rights reserved.
+        </p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

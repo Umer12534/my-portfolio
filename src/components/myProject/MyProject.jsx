@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
-import './MyProject.css';
+import "./MyProject.css";
 
 // ─── Project Data ──────────────────────────────────────────
 const projectsData = [
@@ -27,7 +27,14 @@ const projectsData = [
     description:
       "A full-stack e-commerce platform built with React.js and Firebase, featuring authentication, product listing, cart, checkout, and an admin dashboard to mange product/category. Integrated Firestore and Firebase Storage for real-time data and optimized media handling. Includes an AI chatbot (Groq API) to assist users with personalized hair care guidance and product recommendations.",
     image: "/image/the_hair_locs.png",
-    tags: ["React.js", "Firebase (Auth, Firestore, Storage)", "Groq API", "JavaScript", "HTML5","CSS3" ],
+    tags: [
+      "React.js",
+      "Firebase (Auth, Firestore, Storage)",
+      "Groq API",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+    ],
     link: "https://myhairlocs.netlify.app/",
     year: "2026",
     at: "Vision Birds Tech",
@@ -60,19 +67,46 @@ const projectsData = [
 
 // ─── Arrow Icons ───────────────────────────────────────────
 const ArrowLeft = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <polyline points="15 18 9 12 15 6" />
   </svg>
 );
 
 const ArrowRight = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <polyline points="9 18 15 12 9 6" />
   </svg>
 );
 
 const ExternalLink = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
     <polyline points="15 3 21 3 21 9" />
     <line x1="10" y1="14" x2="21" y2="3" />
@@ -89,7 +123,7 @@ const MyProjects = () => {
   const progressWidth = `${((activeIndex + 1) / total) * 100}%`;
 
   // Pad counter: 01 / 04
-  const fmt = (n) => String(n).padStart(2, '0');
+  const fmt = (n) => String(n).padStart(2, "0");
 
   return (
     <section className="projects-section section-shell">
@@ -99,10 +133,11 @@ const MyProjects = () => {
           <div className="wid-header__accent"></div>
           <h2 className="wid-title">My Project</h2>
           <p className="wid-subtitle">
-            A selection of work I’ve built using modern technologies and clean UI principles
+            A selection of work I’ve built using modern technologies and clean
+            UI principles
           </p>
         </div>
-        
+
         <div className="projects-header section-header">
           <div className="projects-header-left">
             <span className="projects-eyebrow">Selected Work</span>
@@ -125,7 +160,11 @@ const MyProjects = () => {
             fadeEffect={{ crossFade: true }}
             slidesPerView={1}
             pagination={{ el: paginationRef.current, clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             loop={true}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -154,7 +193,9 @@ const MyProjects = () => {
                   <div className="card-content">
                     <div className="card-tags">
                       {project.tags.map((tag, i) => (
-                        <span key={i} className="card-tag">{tag}</span>
+                        <span key={i} className="card-tag">
+                          {tag}
+                        </span>
                       ))}
                     </div>
 

@@ -1,7 +1,7 @@
 /* ── Section Wrapper ─────────────────────────────── */
 .contact-section {
   background: var(--color-card);
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: "Poppins", "Inter", sans-serif;
   position: relative;
   overflow-x: hidden;
 }
@@ -21,7 +21,7 @@
 }
 
 .contact-header__title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-text-bold);
@@ -126,17 +126,20 @@ a.contact-info__value:hover {
   justify-content: center;
   font-size: 1rem;
   text-decoration: none;
-  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .contact-social-btn:hover {
   background: var(--color-accent);
   color: #fff;
   border-color: var(--color-accent);
-  transform: scale(1.2)
+  transform: scale(1.2);
 }
 
-.contact-social-btn:hover .contact-social-icon{
+.contact-social-btn:hover .contact-social-icon {
   transform: scale(1.4);
 }
 
@@ -178,8 +181,10 @@ a.contact-info__value:hover {
   background: var(--color-surface);
   font-size: 0.88rem;
   color: var(--color-text);
-  font-family: 'Poppins', 'Inter', sans-serif;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: "Poppins", "Inter", sans-serif;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   outline: none;
   resize: none;
 }
@@ -209,8 +214,11 @@ a.contact-info__value:hover {
   border: none;
   border-radius: 40px;
   cursor: pointer;
-  font-family: 'Poppins', 'Inter', sans-serif;
-  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  font-family: "Poppins", "Inter", sans-serif;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   align-self: flex-start;
 }
 
