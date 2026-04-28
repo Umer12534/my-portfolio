@@ -13,6 +13,7 @@ import {
   faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
+import emailjs from "@emailjs/browser";
 
 const contactInfo = [
   {
@@ -65,11 +66,23 @@ export default function Contact() {
     e.preventDefault();
     setStatus("sending");
 
-    // Replace this with your actual form submission logic (e.g. EmailJS, Formspree)
-    setTimeout(() => {
-      setStatus("success");
-      setForm(INITIAL_FORM);
-    }, 1500);
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      )
+      .then(
+        () => {
+          setStatus("success");
+          setForm(INITIAL_FORM);
+        },
+        (error) => {
+          console.error(error);
+          setStatus("error");
+        },
+      );
   }
 
   return (
