@@ -47,7 +47,7 @@ const socials = [
   {
     icon: faLinkedin,
     label: "LinkedIn",
-    href: "www.linkedin.com/in/syed-umer-ac2416",
+    href: "https://www.linkedin.com/in/syed-umer-ac2416",
   },
 ];
 
