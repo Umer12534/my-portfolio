@@ -17,7 +17,7 @@ const projectsData = [
       "Genetic Insight is a SaaS platform that streamlines machine learning model training on DNA and RNA sequence data. With a user-friendly web interface and robust Python backend, it allows researchers to upload genetic data, configure ML models, and visualize results—all without advanced programming skills.",
     image: "/image/genetic_insight.png",
     tags: ["Django", "Python", "NumPy/Pandas", "scikit-learn", "HTML/CSS/JS"],
-    link: "https://example.com/project1",
+    link: null,
     year: "2025",
     at: "Bs-IT FYP",
   },
@@ -47,7 +47,7 @@ const projectsData = [
     image:
       "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
     tags: ["Next.js", "Tailwind", "Socket.io", "Prisma"],
-    link: "https://example.com/project3",
+    link: null,
     year: "2023",
     at: "Bs-IT FYP",
   },
@@ -59,7 +59,7 @@ const projectsData = [
     image:
       "https://images.unsplash.com/photo-1592210454359-904e5f2b0e2b?w=800&h=600&fit=crop",
     tags: ["Vue.js", "D3.js", "OpenWeather API", "Leaflet"],
-    link: "https://example.com/project4",
+    link: null,
     year: "2023",
     at: "Bs-IT FYP",
   },
@@ -204,15 +204,17 @@ const MyProjects = () => {
                     <p className="card-description">{project.description}</p>
 
                     <div className="card-footer">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card-link"
-                      >
-                        <span>View Project</span>
-                        <ExternalLink />
-                      </a>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="card-link"
+                        >
+                          <span>View Project</span>
+                          <ExternalLink />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </article>
