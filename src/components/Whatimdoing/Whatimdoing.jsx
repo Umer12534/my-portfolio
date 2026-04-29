@@ -58,7 +58,7 @@ const services = [
     id: 7,
     title: "AI & Machine Learning",
     description:
-      "Developing intelligent systems and models for real-world problem solving.",
+      "Developing intelligent systems for real-world problems. A Python learner exploring AI & Machine Learning to build practical solutions.",
     icon: faMicrochip,
   },
   {
