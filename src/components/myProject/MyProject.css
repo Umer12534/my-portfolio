@@ -104,8 +104,11 @@
   overflow: hidden;
   position: relative;
   transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
     border-color 0.35s ease,
     var(--theme-transition);
+  will-change: transform;
 }
 
 /* Gold radial glow on hover using your accent-glow variable */
@@ -227,6 +230,15 @@
   letter-spacing: -0.03em;
   pointer-events: none;
   user-select: none;
+  transform: translateY(0);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.project-card:hover .card-number {
+  opacity: 0.11;
+  transform: translateY(-6px);
 }
 
 /* ─── Card Content (Right) ───────────────────────────────── */
@@ -275,12 +287,14 @@
   color: var(--color-accent);
   border: 1px solid transparent;
   transition:
+    transform 0.25s ease,
     border-color 0.25s ease,
     var(--theme-transition);
 }
 
 .card-tag:hover {
   border-color: var(--color-logo-light);
+  transform: translateY(-2px);
 }
 
 /* ─── Card Title ─────────────────────────────────────────── */
@@ -420,6 +434,18 @@
   transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-logo);
+  box-shadow: 0 0 14px var(--color-logo);
+}
+
 /* ─── Nav Buttons ────────────────────────────────────────── */
 .nav-buttons {
   display: flex;
@@ -462,6 +488,10 @@
   animation: proj-fadeInLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
+.swiper-slide-active .card-image {
+  animation: projKenBurns 5s ease both;
+}
+
 .swiper-slide-active .card-tags {
   animation: proj-fadeInUp 0.45s 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -497,6 +527,15 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes projKenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.045);
   }
 }
 

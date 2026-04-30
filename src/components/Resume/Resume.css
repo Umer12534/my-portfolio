@@ -54,7 +54,7 @@
 
 .resume-download-btn:hover {
   background: var(--color-logo-light);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
   box-shadow: 0 8px 20px rgba(232, 160, 32, 0.3);
 }
 
@@ -120,17 +120,33 @@
   background: var(--color-accent);
   border: 2px solid var(--color-background);
   box-shadow: 0 0 0 2px var(--color-accent);
+  animation: resumeDotPulse 2.6s ease-in-out infinite;
 }
 
 .resume-timeline__card {
   background: var(--color-card);
   border-radius: 5px;
   padding: 20px 24px;
-  transition: box-shadow 0.3s ease;
+  border: 1px solid transparent;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .resume-timeline__card:hover {
+  border-color: var(--color-border);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes resumeDotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+  50% {
+    box-shadow: 0 0 0 7px var(--color-accent-glow);
+  }
 }
 
 .resume-timeline__card-header {

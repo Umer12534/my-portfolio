@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Navbar from "../components/navbar/Navbar";
 import Hero from "../components/heloSection/Herosection";
 import ProfileSection from "../components/Profile/Profile";
@@ -7,6 +8,32 @@ import MyProjects from "../components/myProject/MyProject";
 import Resume from "../components/Resume/Resume";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
+
+const AnimatedSection = motion.section;
+
+const sectionMotion = {
+  hidden: { opacity: 0, y: 42 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+function MotionSection({ id, children }) {
+  return (
+    <AnimatedSection
+      id={id}
+      className="page-anchor"
+      variants={sectionMotion}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.18 }}
+    >
+      {children}
+    </AnimatedSection>
+  );
+}
 
 const Home = () => {
   return (
@@ -17,25 +44,25 @@ const Home = () => {
         <Hero />
       </section>
 
-      <section id="about" className="page-anchor" data-aos="fade-up">
+      <MotionSection id="about">
         <ProfileSection />
-      </section>
+      </MotionSection>
 
-      <section id="services" className="page-anchor" data-aos="fade-up">
+      <MotionSection id="services">
         <WhatImDoing />
-      </section>
+      </MotionSection>
 
-      <section id="portfolio" className="page-anchor" data-aos="fade-up">
+      <MotionSection id="portfolio">
         <MyProjects />
-      </section>
+      </MotionSection>
 
-      <section id="resume" className="page-anchor" data-aos="fade-up">
+      <MotionSection id="resume">
         <Resume />
-      </section>
+      </MotionSection>
 
-      <section id="contact" className="page-anchor" data-aos="fade-up">
+      <MotionSection id="contact">
         <Contact />
-      </section>
+      </MotionSection>
 
       <Footer />
     </div>

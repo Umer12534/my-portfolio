@@ -10,7 +10,6 @@ import {
 import {
   faGithub,
   faLinkedin,
-  faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import emailjs from "@emailjs/browser";

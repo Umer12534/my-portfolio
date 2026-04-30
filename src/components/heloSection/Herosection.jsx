@@ -38,8 +38,11 @@ function Typewriter() {
         const t = setTimeout(() => setText(text.slice(0, -1)), 55);
         return () => clearTimeout(t);
       }
-      setDeleting(false);
-      setRoleIdx((i) => (i + 1) % ROLES.length);
+      const t = setTimeout(() => {
+        setDeleting(false);
+        setRoleIdx((i) => (i + 1) % ROLES.length);
+      }, 55);
+      return () => clearTimeout(t);
     }
   }, [text, deleting, roleIdx]);
 
@@ -82,11 +85,11 @@ export default function HeroSection() {
         <div className="hero__buttons">
           <a href="/resume.pdf" className="hero__btn hero__btn--outline">
             <FontAwesomeIcon icon={faDownload} />
-            Resume
+            <span>Resume</span>
           </a>
           <a href="#contact" className="hero__btn hero__btn--outline">
             <FontAwesomeIcon icon={faEnvelope} />
-            Contact
+            <span>Contact</span>
           </a>
         </div>
       </div>

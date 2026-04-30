@@ -1,14 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Navbar.css";
 import { useTheme } from "../../theme/ThemeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHouse,
-  faUser,
-  faStar,
   faBriefcase,
-  faFileAlt,
   faEnvelope,
+  faFileAlt,
+  faHouse,
+  faMoon,
+  faStar,
+  faSun,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 const navItems = [
@@ -21,6 +23,23 @@ const navItems = [
 ];
 
 const NAVBAR_HEIGHT = 80;
+
+function ThemeToggle({ isDark, toggleTheme }) {
+  return (
+    <button
+      className="navbar__theme-toggle"
+      onClick={toggleTheme}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Light mode" : "Dark mode"}
+    >
+      <span className="navbar__theme-toggle-track">
+        <span className="navbar__theme-toggle-thumb">
+          <FontAwesomeIcon icon={isDark ? faMoon : faSun} />
+        </span>
+      </span>
+    </button>
+  );
+}
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -35,19 +54,11 @@ const Navbar = () => {
   const navRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  useEffect(() => {
-    const onResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      updateUnderline(activeId);
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeId]);
-
-  const updateUnderline = (id) => {
+  const updateUnderline = useCallback((id) => {
     const linkEl = linkRefs.current[id];
     const navEl = navRef.current;
     if (!linkEl || !navEl) return;
+
     const linkRect = linkEl.getBoundingClientRect();
     const navRect = navEl.getBoundingClientRect();
     setUnderline({
@@ -55,16 +66,27 @@ const Navbar = () => {
       width: linkRect.width,
       ready: true,
     });
-  };
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      updateUnderline(activeId);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [activeId, updateUnderline]);
 
   useEffect(() => {
     updateUnderline(activeId);
-  }, [activeId]);
+  }, [activeId, updateUnderline]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       const sectionIds = navItems.map((n) => n.id);
+
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const el = document.getElementById(sectionIds[i]);
         if (el && el.getBoundingClientRect().top <= NAVBAR_HEIGHT + 20) {
@@ -73,13 +95,16 @@ const Navbar = () => {
         }
       }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = (e, id) => {
     e.preventDefault();
     setActiveId(id);
+
     const target = document.getElementById(id);
     if (target) {
       const top =
@@ -90,21 +115,6 @@ const Navbar = () => {
 
   const scrolledClass = scrolled ? "navbar--scrolled" : "";
   const darkClass = isDark ? "navbar--dark" : "";
-
-  const ThemeToggle = () => (
-    <button
-      className="navbar__theme-toggle"
-      onClick={toggleTheme}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Light mode" : "Dark mode"}
-    >
-      <span className="navbar__theme-toggle-track">
-        <span className="navbar__theme-toggle-thumb">
-          {isDark ? "🌙" : "☀️"}
-        </span>
-      </span>
-    </button>
-  );
 
   if (isMobile) {
     const bottomTabsClass = [
@@ -117,17 +127,15 @@ const Navbar = () => {
 
     return (
       <>
-        {/* Mobile: top bar with logo + theme toggle only */}
         <header
           className={["navbar", "navbar--mobile-top", scrolledClass, darkClass]
             .filter(Boolean)
             .join(" ")}
         >
           <div className="navbar__logo">Umer</div>
-          <ThemeToggle />
+          <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
         </header>
 
-        {/* Mobile: bottom tab bar */}
         <nav className={bottomTabsClass} aria-label="Mobile navigation">
           {navItems.map(({ label, id, icon }) => (
             <a
@@ -190,7 +198,7 @@ const Navbar = () => {
         )}
       </nav>
 
-      <ThemeToggle />
+      <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
     </header>
   );
 };

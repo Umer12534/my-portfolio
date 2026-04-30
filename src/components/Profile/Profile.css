@@ -96,6 +96,7 @@
   transition:
     background 0.4s ease,
     color 0.4s ease;
+  animation: profileBadgePulse 2.8s ease-in-out infinite;
 }
 
 [data-theme="dark"] .profile-photo__badge {
@@ -112,6 +113,17 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
+  border: 1px solid transparent;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.profile-about:hover {
+  border-color: var(--color-border);
+  box-shadow: 0 16px 38px rgba(15, 17, 23, 0.08);
+  transform: translateY(-4px);
 }
 
 .profile-about__label {
@@ -298,6 +310,16 @@
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes profileBadgePulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
   }
 }
 

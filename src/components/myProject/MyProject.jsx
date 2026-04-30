@@ -159,13 +159,16 @@ const MyProjects = () => {
             effect="fade"
             fadeEffect={{ crossFade: true }}
             slidesPerView={1}
-            pagination={{ el: paginationRef.current, clickable: true }}
+            pagination={{ clickable: true }}
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}
             loop={true}
+            onBeforeInit={(swiper) => {
+              swiper.params.pagination.el = paginationRef.current;
+            }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           >

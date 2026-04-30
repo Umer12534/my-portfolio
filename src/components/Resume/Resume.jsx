@@ -13,7 +13,7 @@ const experience = [
     role: "Full Stack Developer",
     company: "Vision Birds Tech",
     companyUrl: "https://visionbird.com/",
-    period: "Nov 2026 – Apr 2026",
+    period: "Nov 2025 – Apr 2026",
     description:
       "Worked as a Full Stack Developer at Vision Bird, developing and maintaining responsive web applications using modern frontend and backend technologies. Implemented REST APIs, integrated databases, and built scalable UI components while following best coding practices.",
   },

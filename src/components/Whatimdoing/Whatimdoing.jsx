@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 import "./Whatimdoing.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -76,6 +77,29 @@ const services = [
 // Alternate AOS animations for visual variety
 const animations = ["fade-up", "fade-right", "fade-left", "zoom-in"];
 
+const AnimatedGrid = motion.div;
+const AnimatedCard = motion.div;
+
+const gridMotion = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const cardMotion = {
+  hidden: { opacity: 0, y: 28, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export default function WhatImDoing() {
   useEffect(() => {
     AOS.init({ duration: 600, once: true, easing: "ease-out-cubic" });
@@ -92,11 +116,20 @@ export default function WhatImDoing() {
           </p>
         </div>
 
-        <div className="wid-grid">
+        <AnimatedGrid
+          className="wid-grid"
+          variants={gridMotion}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {services.map((service, index) => (
-            <div
+            <AnimatedCard
               key={service.id}
               className="wid-card"
+              variants={cardMotion}
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
               data-aos={animations[index % animations.length]}
               data-aos-delay={index * 80}
             >
@@ -110,9 +143,9 @@ export default function WhatImDoing() {
               </div>
               <h3 className="wid-card-title">{service.title}</h3>
               <p className="wid-card-desc">{service.description}</p>
-            </div>
+            </AnimatedCard>
           ))}
-        </div>
+        </AnimatedGrid>
       </div>
     </section>
   );
