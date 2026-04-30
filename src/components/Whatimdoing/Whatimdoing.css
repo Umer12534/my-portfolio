@@ -1,31 +1,13 @@
-/* ── CSS Variables (inherited from root) ───────────────────────────────── */
-
 /* ── Section Wrapper ───────────────────────────────────────────────────── */
 .wid-section {
   position: relative;
   background: var(--color-background);
-  overflow: hidden;
 }
-
-/* Background Pattern */
-/* .wid-bg-pattern {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
-} */
 
 /* ── Header Section ────────────────────────────────────────────────────── */
 .wid-header {
   text-align: center;
   margin-bottom: 64px;
-  position: relative;
-  z-index: 1;
 }
 
 .wid-header__accent {
@@ -46,6 +28,7 @@
   margin-bottom: 16px;
   font-family: "Inter", sans-serif;
 }
+
 .wid-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -68,8 +51,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--section-gap);
-  position: relative;
-  z-index: 1;
 }
 
 /* ── Card Styles ───────────────────────────────────────────────────────── */
@@ -80,24 +61,11 @@
   cursor: default;
   background: var(--color-card);
   border-radius: 10px;
-  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  opacity: 0;
-  transform: translateY(30px);
   overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
-.wid-card.animate {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Border Animation Elements - Start from top-left corner */
+/* ── Border Animation ──────────────────────────────────────────────────── */
 .border-top,
 .border-right,
 .border-bottom,
@@ -107,7 +75,6 @@
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Top border - grows from left to right */
 .border-top {
   top: 0;
   left: 0;
@@ -117,7 +84,6 @@
   transform-origin: left;
 }
 
-/* Right border - grows from top to bottom */
 .border-right {
   top: 0;
   right: 0;
@@ -127,7 +93,6 @@
   transform-origin: top;
 }
 
-/* Bottom border - grows from right to left */
 .border-bottom {
   bottom: 0;
   right: 0;
@@ -137,7 +102,6 @@
   transform-origin: right;
 }
 
-/* Left border - grows from bottom to top */
 .border-left {
   bottom: 0;
   left: 0;
@@ -147,7 +111,6 @@
   transform-origin: bottom;
 }
 
-/* Hover animation - border spreads from top-left corner */
 .wid-card:hover .border-top {
   transform: scaleX(1);
   transition-delay: 0s;
@@ -168,28 +131,26 @@
   transition-delay: 0.45s;
 }
 
-/* Icon Wrapper */
+/* ── Icon Wrapper ──────────────────────────────────────────────────────── */
 .wid-icon-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
   color: var(--color-text-muted);
-  transition: all 0.3s ease;
   position: relative;
   z-index: 2;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.wid-icon-wrapper svg {
-  transition: all 0.3s ease;
-}
-
-.wid-icon-wrapper.hovered {
+.wid-card:hover .wid-icon-wrapper {
   color: var(--color-accent);
   transform: scale(1.05);
 }
 
-/* Card Title */
+/* ── Card Text ─────────────────────────────────────────────────────────── */
 .wid-card-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -205,31 +166,20 @@
   color: var(--color-accent);
 }
 
-/* Card Description */
 .wid-card-desc {
   font-size: 0.88rem;
   color: var(--color-text-muted);
   line-height: 1.65;
-  margin: 0 0 20px;
+  margin: 0;
   font-family: "Inter", sans-serif;
   position: relative;
   z-index: 2;
 }
 
-.wid-arrow {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.3s ease;
-}
-
-/* ── Responsive Design ─────────────────────────────────────────────────── */
+/* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .wid-grid {
     gap: 20px;
-  }
-
-  .wid-card {
-    padding: var(--card-space-lg) var(--card-space);
   }
 
   .wid-title {
@@ -249,10 +199,6 @@
 
   .wid-header__tag {
     font-size: 0.65rem;
-  }
-
-  .wid-card {
-    padding: var(--card-space-lg) var(--card-space);
   }
 
   .wid-card-title {
@@ -275,9 +221,5 @@
 
   .wid-subtitle {
     font-size: 0.85rem;
-  }
-
-  .wid-card {
-    padding: var(--card-space-lg) var(--card-space);
   }
 }

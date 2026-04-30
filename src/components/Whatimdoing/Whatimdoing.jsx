@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Whatimdoing.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -51,14 +53,15 @@ const services = [
   {
     id: 6,
     title: "Cloud & Deployment",
-    description: "Deploying applications.",
+    description:
+      "Deploying and managing applications on cloud platforms for reliability and scale.",
     icon: faCloud,
   },
   {
     id: 7,
     title: "AI & Machine Learning",
     description:
-      "Developing intelligent systems for real-world problems. A Python learner exploring AI & Machine Learning to build practical solutions.",
+      "Developing intelligent systems for real-world problems. A Python learner exploring AI & ML to build practical solutions.",
     icon: faMicrochip,
   },
   {
@@ -70,34 +73,19 @@ const services = [
   },
 ];
 
+// Alternate AOS animations for visual variety
+const animations = ["fade-up", "fade-right", "fade-left", "zoom-in"];
+
 export default function WhatImDoing() {
-  const [hoveredId, setHoveredId] = useState(null);
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    AOS.init({ duration: 600, once: true, easing: "ease-out-cubic" });
   }, []);
 
   return (
-    <section ref={sectionRef} className="wid-section section-shell">
+    <section className="wid-section section-shell">
       <div className="section-container--wide">
-        <div className="wid-header section-header">
-          <div className="wid-header__accent"></div>
+        <div className="wid-header section-header" data-aos="fade-up">
+          <div className="wid-header__accent" />
           <h2 className="wid-title">My Services</h2>
           <p className="wid-subtitle">
             Transforming ideas into exceptional digital experiences
@@ -108,20 +96,16 @@ export default function WhatImDoing() {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`wid-card ${isVisible ? "animate" : ""}`}
-              style={{ animationDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredId(service.id)}
-              onMouseLeave={() => setHoveredId(null)}
+              className="wid-card"
+              data-aos={animations[index % animations.length]}
+              data-aos-delay={index * 80}
             >
-              {/* Border animation elements */}
-              <div className="border-top"></div>
-              <div className="border-right"></div>
-              <div className="border-bottom"></div>
-              <div className="border-left"></div>
+              <div className="border-top" />
+              <div className="border-right" />
+              <div className="border-bottom" />
+              <div className="border-left" />
 
-              <div
-                className={`wid-icon-wrapper ${hoveredId === service.id ? "hovered" : ""}`}
-              >
+              <div className="wid-icon-wrapper">
                 <FontAwesomeIcon icon={service.icon} size="4x" />
               </div>
               <h3 className="wid-card-title">{service.title}</h3>

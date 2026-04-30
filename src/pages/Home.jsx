@@ -17,23 +17,23 @@ const Home = () => {
         <Hero />
       </section>
 
-      <section id="about" className="page-anchor">
+      <section id="about" className="page-anchor" data-aos="fade-up">
         <ProfileSection />
       </section>
 
-      <section id="services" className="page-anchor">
+      <section id="services" className="page-anchor" data-aos="fade-up">
         <WhatImDoing />
       </section>
 
-      <section id="portfolio" className="page-anchor">
+      <section id="portfolio" className="page-anchor" data-aos="fade-up">
         <MyProjects />
       </section>
 
-      <section id="resume" className="page-anchor">
+      <section id="resume" className="page-anchor" data-aos="fade-up">
         <Resume />
       </section>
 
-      <section id="contact" className="page-anchor">
+      <section id="contact" className="page-anchor" data-aos="fade-up">
         <Contact />
       </section>
 
