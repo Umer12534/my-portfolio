@@ -22,16 +22,6 @@
   }
 }
 
-@keyframes heroImageDrift {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.045);
-  }
-}
-
 @keyframes heroStrokeGlow {
   0%,
   100% {
@@ -66,8 +56,6 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   transition: opacity 0.7s ease;
-  animation: heroImageDrift 18s ease-in-out infinite;
-  will-change: transform;
 }
 
 .hero__bg--light {
@@ -301,6 +289,10 @@
     min-height: 100svh;
     align-items: flex-end; /* push content toward bottom on short phones */
     padding-bottom: 0;
+  }
+
+  .hero__bg {
+    background-attachment: scroll;
   }
 
   .hero__content {
