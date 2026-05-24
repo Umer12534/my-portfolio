@@ -103,7 +103,7 @@ export default function Resume() {
         </div>
 
         <div className="resume-columns">
-          <div className="resume-col">
+          <div className={`resume-col${animate ? " animate" : ""}`}>
             <div className="resume-col__heading">
               <FontAwesomeIcon
                 icon={faBriefcase}
@@ -111,7 +111,7 @@ export default function Resume() {
               />
               <h3 className="resume-col__title">Experience</h3>
             </div>
-            <div className="resume-timeline">
+            <div className={`resume-timeline${animate ? " animate" : ""}`}>
               {experience.map((item, idx) => (
                 <TimelineItem
                   key={item.id}
@@ -124,7 +124,7 @@ export default function Resume() {
             </div>
           </div>
 
-          <div className="resume-col">
+          <div className={`resume-col${animate ? " animate" : ""}`}>
             <div className="resume-col__heading">
               <FontAwesomeIcon
                 icon={faGraduationCap}
@@ -132,7 +132,7 @@ export default function Resume() {
               />
               <h3 className="resume-col__title">Education</h3>
             </div>
-            <div className="resume-timeline">
+            <div className={`resume-timeline${animate ? " animate" : ""}`}>
               {education.map((item, idx) => (
                 <TimelineItem
                   key={item.id}
