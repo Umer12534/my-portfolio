@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./Contact.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -55,31 +55,84 @@ const INITIAL_FORM = { name: "", email: "", subject: "", message: "" };
 export default function Contact() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
-  const formRef = useRef(null);
+  const [feedback, setFeedback] = useState("");
 
   function handleChange(e) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (status) {
+      setStatus(null);
+      setFeedback("");
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const trimmedForm = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      subject: form.subject.trim(),
+      message: form.message.trim(),
+    };
+
+    if (Object.values(trimmedForm).some((value) => !value)) {
+      setStatus("error");
+      setFeedback("Please fill in all fields before sending.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedForm.email)) {
+      setStatus("error");
+      setFeedback("Please enter a valid email address.");
+      return;
+    }
+
+    const {
+      VITE_EMAILJS_SERVICE_ID,
+      VITE_EMAILJS_TEMPLATE_ID,
+      VITE_EMAILJS_PUBLIC_KEY,
+    } = import.meta.env;
+
+    if (
+      !VITE_EMAILJS_SERVICE_ID ||
+      !VITE_EMAILJS_TEMPLATE_ID ||
+      !VITE_EMAILJS_PUBLIC_KEY
+    ) {
+      setStatus("error");
+      setFeedback("Email service is not configured yet.");
+      return;
+    }
+
     setStatus("sending");
+    setFeedback("");
 
     emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      .send(
+        VITE_EMAILJS_SERVICE_ID,
+        VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: trimmedForm.name,
+          email: trimmedForm.email,
+          subject: trimmedForm.subject,
+          message: trimmedForm.message,
+          from_name: trimmedForm.name,
+          from_email: trimmedForm.email,
+          reply_to: trimmedForm.email,
+          user_name: trimmedForm.name,
+          user_email: trimmedForm.email,
+        },
+        VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(
         () => {
           setStatus("success");
+          setFeedback("Message sent! I'll get back to you soon.");
           setForm(INITIAL_FORM);
         },
         (error) => {
           console.error(error);
           setStatus("error");
+          setFeedback("Something went wrong. Please try again.");
         },
       );
   }
@@ -149,13 +202,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right –  form  */}
-          <form
-            ref={formRef}
-            className="contact-form"
-            onSubmit={handleSubmit}
-            noValidate
-          >
+          {/* Right – form */}
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
             <div className="contact-form__row">
               <div className="contact-form__group">
                 <label htmlFor="name" className="contact-form__label">
@@ -169,6 +217,7 @@ export default function Contact() {
                   placeholder="Your name"
                   value={form.name}
                   onChange={handleChange}
+                  autoComplete="name"
                   required
                 />
               </div>
@@ -184,6 +233,7 @@ export default function Contact() {
                   placeholder="your@email.com"
                   value={form.email}
                   onChange={handleChange}
+                  autoComplete="email"
                   required
                 />
               </div>
@@ -238,12 +288,12 @@ export default function Contact() {
 
             {status === "success" && (
               <p className="contact-form__feedback contact-form__feedback--success">
-                Message sent! I'll get back to you soon.
+                {feedback}
               </p>
             )}
             {status === "error" && (
               <p className="contact-form__feedback contact-form__feedback--error">
-                Something went wrong. Please try again.
+                {feedback}
               </p>
             )}
           </form>
