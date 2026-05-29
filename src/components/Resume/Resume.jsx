@@ -17,6 +17,7 @@ const experience = [
     company: "Vision Birds Tech",
     companyUrl: "https://visionbird.com/",
     period: "Nov 2025 - Apr 2026",
+    locationType: "On-Site",
     description:
       "Worked as a Full Stack Developer at Vision Bird, developing and maintaining responsive web applications using modern frontend and backend technologies. Implemented REST APIs, integrated databases, and built scalable UI components while following best coding practices.",
     document: {
@@ -24,10 +25,20 @@ const experience = [
       href: "/Documents/Experience Letter for Syed Umer Zubair - INT-PSEB-182.pdf",
     },
   },
-  // {
-  //   id: 2,
-  //   role:
-  // }
+  {
+    id: 2,
+    role: "AI/ML Engineer Intern",
+    company: "Developers Hub",
+    companyUrl: "https://developers-hub.com/",
+    period: "May 2026 - Present",
+    locationType: "Remote",
+    description:
+      "Worked as an AI/ML Engineer Intern at Developers Hub, Built mini projects using Python, TensorFlow, and scikit-learn to implement machine learning algorithms. Developed and trained models for classification and regression tasks.",
+    document: {
+      title: "Internship Offer Letter",
+      href: "/Documents/Internship Offer Letter for Syed Umer Zubair - INT-PSEB-182.pdf",
+    },
+  },
 ];
 
 const education = [
@@ -81,7 +92,14 @@ function TimelineItem({ item, animate, delay, isExperience, onOpenDocument }) {
             <h3 className="resume-timeline__title">{itemTitle}</h3>
             <span className="resume-timeline__org">{organization}</span>
           </div>
-          <span className="resume-timeline__period">{item.period}</span>
+          <div className="resume-timeline__meta">
+            {item.locationType && (
+              <span className="resume-timeline__location-type">
+                {item.locationType}
+              </span>
+            )}
+            <span className="resume-timeline__period">{item.period}</span>
+          </div>
         </div>
         <p className="resume-timeline__desc">{item.description}</p>
         {item.document && (
