@@ -144,6 +144,7 @@ export default function Contact() {
           <div className="contact-header__accent" />
           <h2 className="contact-header__title">Contact</h2>
           <p className="contact-header__subtitle">
+            {" "}
             Have a project in mind? Let's talk.
           </p>
         </div>
