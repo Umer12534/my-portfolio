@@ -149,7 +149,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right – form */}
+          {/* Right –  form  */}
           <form
             ref={formRef}
             className="contact-form"
