@@ -42,7 +42,7 @@ const Footer = () => {
           </p>
           <div className="footer__socials">
             <a
-              href="https://github.com"
+              href="https://github.com/Umer12534"
               target="_blank"
               rel="noopener noreferrer"
               className="footer__social-btn"
@@ -51,7 +51,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faGithub} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/syed-umer-ac2416"
               target="_blank"
               rel="noopener noreferrer"
               className="footer__social-btn"
