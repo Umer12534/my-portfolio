@@ -8,6 +8,7 @@ import MyProjects from "../components/myProject/MyProject";
 import Resume from "../components/Resume/Resume";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
+import PortfolioChat from "../components/Chat/chat";
 
 const AnimatedSection = motion.section;
 
@@ -65,6 +66,7 @@ const Home = () => {
       </MotionSection>
 
       <Footer />
+      <PortfolioChat />
     </div>
   );
 };
