@@ -30,7 +30,7 @@ const experience = [
     role: "AI/ML Engineer Intern",
     company: "Developers Hub",
     companyUrl: "https://developers-hub.com/",
-    period: "May 2026 - Present",
+    period: "May 2026 - June 2026",
     locationType: "Remote",
     description:
       "Worked as an AI/ML Engineer Intern at Developers Hub, Built mini projects using Python, TensorFlow, and scikit-learn to implement machine learning algorithms. Developed and trained models for classification and regression tasks.",
