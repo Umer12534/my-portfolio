@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 
@@ -8,7 +8,13 @@ import "swiper/css/effect-fade";
 
 import "./MyProject.css";
 
-// ─── Project Data ──────────────────────────────────────────
+// ─── GitHub Settings ───────────────────────────────────────
+// Change this to your GitHub username
+const GITHUB_USERNAME = "Umer12534";
+// Any repo with this topic will appear in the carousel automatically
+const TOPIC = "portfolio";
+
+// ─── Project Data (hand-written projects) ──────────────────
 const projectsData = [
   {
     id: 1,
@@ -65,6 +71,24 @@ const projectsData = [
   },
 ];
 
+// ─── Convert a GitHub repo into the same shape as projectsData ──
+const repoToProject = (repo) => ({
+  id: `gh-${repo.id}`,
+  title: repo.name.replace(/[-_]/g, " "),
+  description: repo.description || "No description added yet.",
+  image: `https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`,
+  tags: [
+    ...(repo.language ? [repo.language] : []),
+    ...(repo.topics || []).filter((t) => t !== TOPIC),
+  ],
+  link: repo.homepage || repo.html_url,
+  year: new Date(repo.created_at).getFullYear().toString(),
+  at: "Personal Project",
+});
+
+// Used to detect duplicates between hand-written and GitHub projects
+const normalize = (str) => str.toLowerCase().replace(/[\s_-]/g, "");
+
 // ─── Arrow Icons ───────────────────────────────────────────
 const ArrowLeft = () => (
   <svg
@@ -118,7 +142,41 @@ const MyProjects = () => {
   const swiperRef = useRef(null);
   const paginationRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const total = projectsData.length;
+
+  // Start with your hand-written projects, GitHub ones get added after load
+  const [projects, setProjects] = useState(projectsData);
+  const total = projects.length;
+
+  useEffect(() => {
+    const loadGithubProjects = async () => {
+      try {
+        const res = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`
+        );
+        if (!res.ok) throw new Error("GitHub API error");
+        const repos = await res.json();
+
+        const fromGithub = repos
+          .filter((repo) => repo.topics?.includes(TOPIC))
+          .map(repoToProject)
+          // skip repos you already added by hand
+          .filter(
+            (gh) =>
+              !projectsData.some(
+                (p) =>
+                  normalize(p.title) === normalize(gh.title) ||
+                  (p.link && p.link === gh.link)
+              )
+          );
+
+        setProjects([...projectsData, ...fromGithub]);
+      } catch (err) {
+        console.error("Could not load GitHub projects", err);
+      }
+    };
+
+    loadGithubProjects();
+  }, []);
 
   const progressWidth = `${((activeIndex + 1) / total) * 100}%`;
 
@@ -154,6 +212,7 @@ const MyProjects = () => {
         {/* ── Carousel ── */}
         <div className="projects-carousel">
           <Swiper
+            key={projects.length}
             className="projects-swiper"
             modules={[Pagination, Autoplay, EffectFade]}
             effect="fade"
@@ -172,7 +231,7 @@ const MyProjects = () => {
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           >
-            {projectsData.map((project, index) => (
+            {projects.map((project, index) => (
               <SwiperSlide key={project.id}>
                 <article className="project-card">
                   {/* Left — Visual */}
