@@ -8,7 +8,7 @@ import MyProjects from "../components/myProject/MyProject";
 import Resume from "../components/Resume/Resume";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
-import PortfolioChat from "../components/Chat/chat";
+import PortfolioChat from "../components/Chat/Chat.jsx";
 
 const AnimatedSection = motion.section;
 
