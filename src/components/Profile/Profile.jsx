@@ -39,9 +39,21 @@ export default function ProfileSection() {
   const skillsRef = useRef(null);
   const [animate, setAnimate] = useState(false);
   const { isDark } = useTheme();
+  const [gitData, setGitData] = useState("")
+
+  useEffect(()=>{
+    fetch("https://api.github.com/users/Umer12534")
+    .then(res=>res.json())
+    .then(gitData=>{
+      setGitData(gitData)
+      console.log("url is: ", gitData.avatar_url);
+      
+    })
+  }, [])
+
   const profileImg = isDark
-    ? "/image/profile-Dark.png"
-    : "/image/profile-light.jpg";
+    ? gitData.avatar_url
+    : "/image/Light-Full Stack Developer Profile.png";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
