@@ -39,20 +39,21 @@ export default function ProfileSection() {
   const skillsRef = useRef(null);
   const [animate, setAnimate] = useState(false);
   const { isDark } = useTheme();
-  const [gitData, setGitData] = useState("")
+  const [gitData, setGitData] = useState(null);
+  const [avatarLoaded, setAvatarLoaded] = useState(false);
 
   useEffect(()=>{
     fetch("https://api.github.com/users/Umer12534")
-    .then(res=>res.json())
-    .then(gitData=>{
-      setGitData(gitData)
-      console.log("url is: ", gitData.avatar_url);
-      
-    })
-  }, [])
+      .then((res) => {
+        if (!res.ok) throw new Error("Unable to load GitHub profile");
+        return res.json();
+      })
+      .then(setGitData)
+      .catch((error) => console.error(error));
+  }, []);
 
   const profileImg = isDark
-    ? gitData.avatar_url
+    ? gitData?.avatar_url
     : "/image/Light-Full Stack Developer Profile.png";
 
   useEffect(() => {
@@ -89,8 +90,21 @@ export default function ProfileSection() {
         <div className="profile-top-row">
           {/* Left: Photo */}
           <div className="profile-photo-wrapper">
-            <div className="profile-photo__frame">
-              <img src={profileImg} alt="Profile" className="profile-photo" />
+            <div className={`profile-photo__frame${avatarLoaded ? " is-loaded" : ""}`}>
+              {!avatarLoaded && (
+                <div className="profile-photo__loader" role="status" aria-label="Loading profile photo">
+                  <span />
+                </div>
+              )}
+              {profileImg && (
+                <img
+                  src={profileImg}
+                  alt="Profile"
+                  className="profile-photo"
+                  onLoad={() => setAvatarLoaded(true)}
+                  onError={() => setAvatarLoaded(true)}
+                />
+              )}
             </div>
             <div className="profile-photo__badge">
               <span>Available for work</span>
